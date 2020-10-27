@@ -1,0 +1,486 @@
+\newpage
+\section{Exploration of the covariance given in Eq. (\ref{eq:covariance_g_g})}\label{appendix:B}
+In this appendix, we explore the covariance given in Eq. (\ref{eq:covariance_g_g}) to calculate the value more efficiently by computational experiments. Notice that the covariance is written as 
+\begin{align}\label{eq:cov_saikei}
+	\mathrm{Cov}[g(A_n),\, g(A_{n+k})] 
+	= \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} g(i) g(j) \mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right] - \{L\times H(\hat{q})\}^2,
+\end{align}
+where $g$ is given in Eq. (\ref{eq:function_g}), $\mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right]$ is given in Eq. (\ref{eq:joint_distribution}), and $H$ is a binary entropy function.
+%
+Since the term $\{L\times H(\hat{q})\}^2$ is irrelevant to an infinite series, we write the first term of the right hand side (r.h.s.) of Eq. (\ref{eq:cov_saikei}) as
+%
+% Let us denote the following quantity as $\mathcal{P}_k$
+%
+\begin{align}\label{eq:Sk}
+	\overline{S}_{k} := \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} g(i) g(j) \mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right].
+\end{align}
+% From the result discussed in Section \ref{sec:distribution}, the above value depends on the joint distribution.
+%
+Firstly, we show the following Lemma concerning an infinite series to calculate the value expressed Eq. (\ref{eq:Sk}). 
+%
+\begin{lemma}\label{lemma:1}
+% abcdefghijklmnopqrstuvwxyz
+For any $z \in (0,1)$, the following relation holds
+\begin{align}\label{eq:infinite_series}
+	\sum_{i=1}^{\infty} g(i) \times (1-z)^i = -\frac{1}{\ln 2} \times \frac{1-z}{z} \times \ln z,
+\end{align}
+where
+\begin{align}
+	g(m) = (\log_2 \mathrm{e}) \sum_{k=1}^{m-1} \frac{1}{k}.
+\end{align}
+\end{lemma}
+%
+% \begin{proof}
+% Let $A=1-z$, and $S$ be the left hand side of Eq. (\ref{eq:infinite_series}), that is,
+% \begin{align}\begin{split}\label{eq:S}
+% 	S &= \sum_{i=1}^{\infty} g(i) \times A^i \\
+%     % \Leftrightarrow S &= g(1)\times A +  \sum_{i=2}^{\infty} g(i) \times A^{i} \label{eq:S}.
+%     &= g(1)\times A +  \sum_{i=2}^{\infty} g(i) \times A^{i}.
+% \end{split}\end{align}
+% Multiplying the both sides of Eq. (\ref{eq:S}) by $A(\neq 0)$, we obtain the following relation
+% \begin{align}\begin{split}\label{eq:AS}
+% 	A\times S &= \sum_{i=1}^{\infty} g(i) \times A^{i+1} \\
+% 	% \Leftrightarrow A\times S &= \sum_{i=2}^{\infty} g(i-1) \times A^{i} \label{eq:AS}.
+%   &= \sum_{i=2}^{\infty} g(i-1) \times A^{i}.
+% \end{split}\end{align}
+% Subtracting Eq. (\ref{eq:AS}) from Eq. (\ref{eq:S}), we obtain the following relation
+% \begin{align}\begin{split}\label{eq:(1-A)S}
+% 	(1-A)S &= g(1)\times A^{1} + \sum_{i=2}^{\infty} \left\{ g(i)-g(i-1) \right\} \times A^{i} \\
+% 	&=0 + \sum_{i=2}^{\infty} (\log_2 \mathrm{e}) \times \frac{1}{i-1} \times A^{i} \\
+% 	&=(\log_2 \mathrm{e})\times A \times \sum_{i=1}^{\infty} \frac{A^{i}}{i} \\
+% 	&=(\log_2 \mathrm{e})\times A \times \left\{ - \ln (1-A) \right\}.
+% \end{split}\end{align}
+% To obtain the last equality in the above equations, we have used the Taylor series for $|A| < 1$.
+% % In the above relations, the last equality refers to the result of Taylor series for $|A| < 1$.
+% Dividing both sides of Eq. (\ref{eq:(1-A)S}) by $1-A (\neq 0)$, we arrive at the following result
+% % the following relations are obtained
+% \begin{align}
+% 	S &= -\frac{1}{\ln 2} \times \frac{A}{1-A} \times \ln (1-A).
+% 	% &= -\frac{1}{\ln 2} \times \frac{1-z}{z} \times \ln z.
+% \end{align}
+% The lemma is obtained if we substitute $A$ into $1-z$.
+% % In the above relations, the last equality is obtained from the fact $A=1-z$.
+% \end{proof}
+%-----------------------------------------------------------------------------------------------%
+\begin{proof}
+Let $t=1-z$, and $\overline{S}$ be the left hand side of Eq. (\ref{eq:infinite_series}), that is,
+\begin{align}\begin{split}\label{eq:S}
+  \overline{S} &= \sum_{i=1}^{\infty} g(i) \times t^i \\
+    % \Leftrightarrow S &= g(1)\times A +  \sum_{i=2}^{\infty} g(i) \times A^{i} \label{eq:S}.
+    &= g(1)\times t +  \sum_{i=2}^{\infty} g(i) \times t^{i}.
+\end{split}\end{align}
+Multiplying the both sides of Eq. (\ref{eq:S}) by $t(\neq 0)$, we obtain the following relation
+\begin{align}\begin{split}\label{eq:AS}
+  t\times \overline{S} &= \sum_{i=1}^{\infty} g(i) \times t^{i+1} \\
+  % \Leftrightarrow A\times S &= \sum_{i=2}^{\infty} g(i-1) \times A^{i} \label{eq:AS}.
+  &= \sum_{i=2}^{\infty} g(i-1) \times t^{i}.
+\end{split}\end{align}
+Subtracting Eq. (\ref{eq:AS}) from Eq. (\ref{eq:S}), we obtain the following relation
+\begin{align}\begin{split}\label{eq:(1-A)S}
+  (1-t)\overline{S} &= g(1)\times t^{1} + \sum_{i=2}^{\infty} \left\{ g(i)-g(i-1) \right\} \times t^{i} \\
+  &=0 + \sum_{i=2}^{\infty} (\log_2 \mathrm{e}) \times \frac{1}{i-1} \times t^{i} \\
+  &=(\log_2 \mathrm{e})\times t \times \sum_{i=1}^{\infty} \frac{t^{i}}{i} \\
+  &=(\log_2 \mathrm{e})\times t \times \left\{ - \ln (1-t) \right\}.
+\end{split}\end{align}
+To obtain the last equality in the above equations, we have used the Taylor series for $|t| < 1$.
+% In the above relations, the last equality refers to the result of Taylor series for $|A| < 1$.
+Dividing both sides of Eq. (\ref{eq:(1-A)S}) by $1-t (\neq 0)$, we arrive at the following result
+% the following relations are obtained
+\begin{align}
+  \overline{S} &= -\frac{1}{\ln 2} \times \frac{t}{1-t} \times \ln (1-t).
+  % &= -\frac{1}{\ln 2} \times \frac{1-z}{z} \times \ln z.
+\end{align}
+The lemma is obtained if we substitute $t$ into $1-z$.
+% In the above relations, the last equality is obtained from the fact $A=1-z$.
+\end{proof}
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+% In the case of $1 \leq j \leq k-1$, $\mathcal{P}_k$ is calculated as
+% \begin{align}
+% 	\mathcal{P}_{k,\, j\in J_1} = -\frac{1}{\ln 2}\sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r \ln \mathcal{Q}_r \right\} \times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{\mathcal{Q}_r^2}{1-\mathcal{Q}_r} \sum_{j=1}^{k-1} (1-\mathcal{Q}_r)^{j} \right\}.
+% \end{align}
+% In the case of $j=k$,
+% \begin{align}
+% 	\mathcal{P}_{k,\, j\in J_2} = -\frac{g(k)}{\ln 2}\sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r^2 (1-\mathcal{Q})^{k-1} \ln \mathcal{Q}_r \right\}.
+% \end{align}
+% In the case of $k+1 \leq j \leq k+i-1$,
+% \begin{align}
+% 	\mathcal{P}_{k,\, j\in J_3} 
+% 	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2} \phi_k(r_1,r_2) \\
+% 	&\times \sum_{j=k+1}^{\infty} \left[ g(j)\left( 1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \left\{ -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q})^i \right\} \right] \\
+% 	&\times \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \phi_k(r_1,r_2) \\
+% 	&\times \sum_{j=k+1}^{\infty} \left[ g(j)\left( 1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \left\{ -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q})^i \right\} \right].
+% \end{align}
+% where $\phi_k$ is defined as follows:
+% \begin{align}
+% 	\phi_k(r_1,r_2) = \mathcal{Q}_{r_1}^2 \mathcal{Q}_{r_2}^2 (1-\mathcal{Q}_{r_1})^{k-1} (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{-k-1} (1-\mathcal{Q}_{r_2})^{k-1}.
+% \end{align}
+% %
+% In the case of $j=k+i$,
+% \begin{align}
+% 	\mathcal{P}_{k,\, j\in J_4} = 0
+% \end{align}
+% %
+% In the case of $j\geq k+i+1$,
+% \begin{align}
+% 	\mathcal{P}_{k,\, j\in J_5} 
+% 	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2} \psi(r_1,r_2) \\
+% 	&\times \left[ \frac{1}{(\ln 2)^2} \times \mu(r_1,r_2) - \sum_{i=1}^{\infty}\left\{ g(i)\left( 1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{i} \times \sum_{j=1}^{k+i} g(j) (1-\mathcal{Q}_{r_1})^{j} \right\} \right] \\
+% 	&\times \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \psi(r_1,r_2) \\
+% 	&\times \left[ \frac{1}{(\ln 2)^2} \times \mu(r_1,r_2) - \sum_{i=1}^{\infty}\left\{ g(i)\left( 1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{i} \times \sum_{j=1}^{k+i} g(j) (1-\mathcal{Q}_{r_1})^{j} \right\} \right].
+% \end{align}
+% where $\psi$ and $\mu$ are defined as follows:
+% \begin{align}
+% 	\psi(r_1,r_2) &= \mathcal{Q}_{r_1}^2 \mathcal{Q}_{r_2}^2 (1-\mathcal{Q}_{r_1})^{-2} (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{-1} \\
+% 	\mu(r_1,r_2) &= \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \frac{1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} \times \ln \frac{1-\mathcal{Q}_{r_2}}{\mathcal{Q}_{r_1}}.
+% \end{align}
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\par
+In the next place, we calculate the value given in Eq. (\ref{eq:Sk}) more in details.
+\subsection{Case of $1 \leq j \leq k-1$}
+For $1 \leq j \leq k-1$, Eq. (\ref{eq:Sk}) is written as
+\begin{align}\begin{split}
+  % \mathcal{P}_{k,1} 
+  \overline{S}_{k} 
+  &:= \sum_{i=1}^{\infty} \sum_{j=1}^{k-1} g(i) g(j) \mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right] \\
+  &= \sum_{i=1}^{\infty} \sum_{j=1}^{k-1} g(i) g(j) \left( \sum_{r=0}^{L} \binom{L}{r}w_r^2 (1-w_r)^{i-1} \right) \times \left( \sum_{r=0}^{L} \binom{L}{r}w_r^2 (1-w_r)^{j-1} \right) \\
+  % &= \sum_{r=0}^{L} \left\{\binom{L}{r} \mathcal{Q}_r^2 (1-\mathcal{Q}_r)^{-1} \sum_{i=1}^{\infty} g(i)(1-\mathcal{Q}_r)^{i} \right\}
+  % \times \sum_{r=0}^{L} \left\{ \binom{L}{r} \mathcal{Q}_r^2 (1-\mathcal{Q}_r)^{-1} \sum_{j=1}^{k-1} g(j)(1-\mathcal{Q}_r)^{j} \right\} 
+  &= \sum_{r=0}^{L} \left\{\binom{L}{r} \frac{w_r^2}{1-w_r} \sum_{i=1}^{\infty} g(i)(1-w_r)^{i} \right\}
+  \times \sum_{r=0}^{L} \left\{ \binom{L}{r} \frac{w_r^2}{1-w_r} \sum_{j=1}^{k-1} g(j)(1-w_r)^{j} \right\}.
+\end{split}\end{align}
+From Lemma \ref{lemma:1}, the infinite series of $i$ in the above equations is written as
+\begin{align}
+	% \sum_{i=1}^{\infty} g(i) \times (1 - \mathcal{Q}_r)^{i} = - \frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_r}{\mathcal{Q}_r}\times\ln \mathcal{Q}_r.
+	\sum_{i=1}^{\infty} g(i) (1 - w_r)^{i} = - \frac{1}{\ln 2} \times \frac{1-w_r}{w_r}\times\ln w_r.
+\end{align}
+%
+Therefore, we obtain the following relation
+\begin{align}\begin{split}
+  % \mathcal{P}_{k,1}
+  \overline{S}_{k}
+  % =& \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r^2 \left\{ 1-\mathcal{Q}_r \right\}^{-1} \times \left(- \frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_r}{\mathcal{Q}_r}\times\ln \mathcal{Q}_r \right) \right\} \\
+  % &\times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r^2 \left\{ 1-\mathcal{Q}_r \right\}^{-1} \times \sum_{j=1}^{k-1} (1-\mathcal{Q}_r)^{j} \right\} \\
+  % =&-\frac{1}{\ln 2}\sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r \ln \mathcal{Q}_r \right\} \times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{\mathcal{Q}_r^2}{1-\mathcal{Q}_r} \sum_{j=1}^{k-1} (1-\mathcal{Q}_r)^{j} \right\}
+  =& \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{w_r^2}{1-w_r}  \times \left(- \frac{1}{\ln 2} \times \frac{1-w_r}{w_r}\times\ln w_r \right) \right\} \\
+  &\times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{w_r^2}{1-w_r} \times \sum_{j=1}^{k-1} (1-w_r)^{j} \right\} \\
+  =&-\frac{1}{\ln 2}\sum_{r=0}^{L} \left\{ \dbinom{L}{r} w_r \ln w_r \right\} \times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{w_r^2}{1-w_r} \sum_{j=1}^{k-1} (1-w_r)^{j} \right\}.
+\end{split}\end{align}
+%
+% Let S be an infinite series of $i$ denoted as:
+% \begin{align}
+% 	S = \sum_{i=1}^{\infty} g(i) (1-\mathcal{Q}_r)^i
+% \end{align}
+% %
+% Letting $A = 1-\mathcal{Q}_r$, the above equation is denoted as: 
+% \begin{align}
+%   \label{eq:S}
+%   S = \sum_{i=1}^{\infty} g(i) A^i = g(1)A^1 + \sum_{i=2}^{\infty} g(i) A^i
+% \end{align}
+% By multiplying the both sides of the equation (\ref{eq:S}) by $A(\neq 0)$, we obtain:
+% \begin{align}
+%   A\times S = \sum_{i=1}^{\infty} g(i) A^{i+1} = \sum_{i=2}^{\infty} g(i-1) A^i
+% \end{align}
+% By subtracting equation () from equation (), we obtain:
+% \begin{align}
+%   (1-A)S &= g(1) A^1 + \sum_{i=2}^{\infty} \left\{g(i) - g(i-1)\right\} A^i \\
+%   &= 0 + \sum_{i=2}^{\infty} (\log_2 \mathrm{e}) \times \frac{1}{i-1} A^i \\
+%   &= A \times (\log_2 \mathrm{e}) \sum_{i=1}^{\infty} \frac{A^i}{i} \\
+%   &= A \times (\log_2 \mathrm{e}) \times \left\{ -\ln (1-A) \right\}
+% \end{align}
+% By dividing the both sides of the above equation by $1-A$, we obtain:
+% \begin{align}
+%   S &= \frac{-A}{1-A} \times (\log_2\mathrm{e}) \times \ln (1-A) \\
+%   &= \frac{-A}{1-A} \times \frac{\ln (1-A)}{\ln 2} \\
+%   &= -\frac{1-\mathcal{Q}_r}{\mathcal{Q}_r} \times \frac{\ln \mathcal{Q}_r}{\ln 2} \quad (\because A=1-\mathcal{Q}_r)\\
+%   &= - \frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_r}{\mathcal{Q}_r}\times\ln \mathcal{Q}_r 
+% \end{align}
+% Therefore, we obtain:
+% \begin{align}
+%   \sum_{i=1}^{\infty} g(i) (1 - \mathcal{Q}_r)^{i} = - \frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_r}{\mathcal{Q}_r}\times\ln \mathcal{Q}_r
+% \end{align}
+% %
+% Therefore, we obtain:
+% \begin{align}
+%   \mathcal{P}_{k,1}
+%   =& \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r^2 \left\{ 1-\mathcal{Q}_r \right\}^{-1} \times \left(- \frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_r}{\mathcal{Q}_r}\times\ln \mathcal{Q}_r \right) \right\} \\
+%   &\times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r^2 \left\{ 1-\mathcal{Q}_r \right\}^{-1} \times \sum_{j=1}^{k-1} (1-\mathcal{Q}_r)^{j} \right\} \\
+%   =&-\frac{1}{\ln 2}\sum_{r=0}^{L} \left\{ \dbinom{L}{r} \mathcal{Q}_r \ln \mathcal{Q}_r \right\} \times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{\mathcal{Q}_r^2}{1-\mathcal{Q}_r} \sum_{j=1}^{k-1} (1-\mathcal{Q}_r)^{j} \right\}
+% \end{align}
+\subsection{Case of $j=k$}
+% Let $J_2=\{j\mid j=k\}$. 
+In the case of $j=k$, Eq. (\ref{eq:Sk}) is written as
+\begin{align}\begin{split}\label{eq:app_case2}
+  \overline{S}_{k} 
+  % &= \sum_{i=1}^{\infty} g(i) \sum_{r=0}^{L} \binom{L}{r} \mathcal{Q}_r^3 (1-\mathcal{Q}_r)^{k+i-2} \sum_{j \in J_2} g(j)\\
+  % &= \sum_{r=0}^{L} \binom{L}{r} \mathcal{Q}_r^3 (1-\mathcal{Q}_r)^{k-2} \sum_{i=1}^{\infty} g(i) (1-\mathcal{Q}_r)^{i} \times g(k) \\
+  % &= g(k) \times \sum_{r=0}^{L} \binom{L}{r} \mathcal{Q}_r^3 (1-\mathcal{Q}_r)^{k-2} \left( -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r}}{\mathcal{Q}_{r}} \times \ln \mathcal{Q}_{r} \right) \\
+  % &= -\frac{g(k)}{\ln 2} \times \sum_{r=0}^{L} \binom{L}{r} \mathcal{Q}_r^2 (1-\mathcal{Q}_r)^{k-1} \ln \mathcal{Q}_{r}.
+  &= \sum_{i=1}^{\infty} g(i) \sum_{r=0}^{L} \binom{L}{r} w_r^3 (1-w_r)^{k+i-2} \sum_{j \in \{k\}} g(j)\\
+  &= \sum_{r=0}^{L} \binom{L}{r} w_r^3 (1-w_r)^{k-2} \sum_{i=1}^{\infty} g(i) (1-w_r)^{i} \times g(k) \\
+  &= g(k) \times \sum_{r=0}^{L} \binom{L}{r} w_r^3 (1-w_r)^{k-2} \left( -\frac{1}{\ln 2} \times \frac{1-w_{r}}{w_{r}} \times \ln w_{r} \right) \\
+  &= -\frac{g(k)}{\ln 2} \times \sum_{r=0}^{L} \binom{L}{r} w_r^2 (1-w_r)^{k-1} \ln w_{r}.
+\end{split}\end{align}
+The third equation in Eq. (\ref{eq:app_case2}) has been obtained from Lemma \ref{lemma:1}.
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\subsection{Case of $k+1 \leq j \leq k+i-1$}
+Recall that the joint distribution for $k+1 \leq j \leq k+i-1$ is written as
+% When $k+1 \leq j \leq k+i-1$, the joint distribution is provided as
+\begin{align}\begin{split}
+	\mathrm{Pr}[A_n=i,\, A_{n+k}=j] 
+	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)] \\
+	&+ \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\}\mathrm{Pr}[e_3(b_1,b_2)],
+\end{split}\end{align}
+where $\mathrm{Pr}[e_3(b_1,b_2)]$ is expressed as
+\begin{align}\begin{split}
+	\mathrm{Pr}[e_3(b_1,b_2)]
+	% =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
+ %  \times (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
+ %  \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
+ %  \times (1-\mathcal{Q}_{r_2})^{k-1} \\
+ %  =&\mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
+ %  \times (1-\mathcal{Q}_{r_1})^{k-1} 
+ %  \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{-k-1}
+ %  \times (1-\mathcal{Q}_{r_2})^{k-1} \\
+ %  &\times (1-\mathcal{Q}_{r_1})^{i} \times \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j}
+ 	=& w_{r_1}^2  \times w_{r_2}^2 
+  \times (1-w_{r_1})^{i-j+k-1} 
+  \times (1-w_{r_1}-w_{r_2})^{j-k-1}
+  \times (1-w_{r_2})^{k-1} \\
+  % =&w_{r_1}^2  \times w_{r_2}^2 
+  % \times (1-w_{r_1})^{k-1} 
+  % \times (1-w_{r_1}-w_{r_2})^{-k-1}
+  % \times (1-w_{r_2})^{k-1} \\
+  =&\phi_k(r_1,r_2)\times (1-w_{r_1})^{i} \times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j},
+\end{split}\end{align}
+%
+where
+\begin{align}\label{eq:phi_k}
+	\phi_k(r_1,r_2) = w_{r_1}^2 w_{r_2}^2 
+  	(1-w_{r_1})^{k-1} 
+  	(1-w_{r_1}-w_{r_2})^{-k-1}
+  	(1-w_{r_2})^{k-1}.
+\end{align}
+%
+Then, Eq. (\ref{eq:Sk}) is expressed as
+\begin{align}\begin{split}\label{eq:Sk_case3}
+	% \mathcal{P}_k 
+	% =& \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)]\\ 
+	% &+ \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1} \left\{\binom{L}{r_1}-1 \right\}\mathrm{Pr}[e_3(b_1,b_2)]
+	\overline{S}_k 
+	=& \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)]\\ 
+	&+ \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1} \left\{\binom{L}{r_1}-1 \right\}\mathrm{Pr}[e_3(b_1,b_2)].
+\end{split}\end{align}
+%
+Now, we consider the first term in r.h.s. of Eq. (\ref{eq:Sk_case3}). Let $\overline{A}_1$ be this term of Eq. (\ref{eq:Sk_case3}). We have
+\begin{align}\begin{split}\label{eq:A_1}
+	% \mathcal{S}_1
+	% &=\sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)] \\
+	% &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	% \sum_{i=1}^{\infty} \sum_{j=1}^{k+i-1} g(i)g(j)(1-\mathcal{Q}_{r_1})^{i} \times \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \\
+	% &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	% \sum_{j=k+1}^{\infty} \sum_{i=k+1}^{k+i-1} g(i)g(j)(1-\mathcal{Q}_{r_1})^{i} \times \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \\
+	% &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	% \sum_{j=k+1}^{\infty} \left\{ g(j) \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \times \sum_{i=j-k+1}^{\infty} g(i)(1-\mathcal{Q}_{r_1})^{i} \right\} 
+	\overline{A}_1
+	&=\sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)] \\
+	&=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	\sum_{i=1}^{\infty} \sum_{j=1}^{k+i-1} g(i)g(j)(1-w_{r_1})^{i} \times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \\
+	&=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	\sum_{j=k+1}^{\infty} \sum_{i=k+1}^{k+i-1} g(i)g(j)(1-w_{r_1})^{i} \times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \\
+	&=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	\sum_{j=k+1}^{\infty} \left\{ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \sum_{i=j-k+1}^{\infty} g(i)(1-w_{r_1})^{i} \right\}.
+\end{split}\end{align}
+In the course of the derivation of the above relations, the second equation has been obtained from Eq. (\ref{eq:phi_k}). The third equation has been obtained by exchanging the summation over $i$ and $j$.
+%
+Then, the infinite series with respect to $i$ in the last equation of Eq. (\ref{eq:A_1}) can be calculated as
+\begin{align}\begin{split}
+	% \sum_{i=j-k+1}^{\infty} g(i)(1-\mathcal{Q}_{r_1})^{i} 
+	% &= \sum_{i=1}^{\infty} g(i)(1-\mathcal{Q}_{r_1})^{i} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q}_{r_1})^{i} \\
+	% &= -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q}_{r_1})^{i}.
+	\sum_{i=j-k+1}^{\infty} g(i)(1-w_{r_1})^{i} 
+	&= \sum_{i=1}^{\infty} g(i)(1-w_{r_1})^{i} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \\
+	&= -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i}.
+\end{split}\end{align}
+In the above relations, we have used the result of Lemma \ref{lemma:1}.
+Hence, the first term in r.h.s. of Eq. (\ref{eq:Sk_case3}) can be expressed as
+\begin{align}
+	% \mathcal{S}_1 
+	% =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)\\
+	% &\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q}_{r_1})^{i} \right\} \right].
+	\overline{A}_1 
+	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)\\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right].
+\end{align}
+We can derive the second term in r.h.s. of Eq. (\ref{eq:Sk_case3}) in the same way as the first term. Let $\overline{A}_2$ be the second term of Eq. (\ref{eq:Sk_case3}). Then, we have
+\begin{align}\begin{split}
+	\overline{A}_2 =& \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \phi(r_1,r_2) \\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right].
+\end{split}\end{align}
+%
+Therefore, Eq. (\ref{eq:Sk_case3}) can be written as
+\begin{align}\begin{split}
+	\overline{S}_k =& \overline{A}_1 + \overline{A}_2 \\
+	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)\\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right] \\
+	&+\sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \phi(r_1,r_2) \\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} 
+	\times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right],
+\end{split}\end{align}
+where $\phi_k(r_1,r_2)$ is given in Eq. (\ref{eq:phi_k}).
+% \begin{align}
+% 	\phi_k(r_1,r_2) = w_{r_1}^2 w_{r_2}^2 (1-w_{r_1})^{k-1} (1-w_{r_1}-w_{r_2})^{-k-1} (1-w_{r_2})^{k-1}.
+% \end{align}
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\subsection{Case of $j=k+i$}
+Equation (\ref{eq:Sk}) in the case of $j=k+i$ is equal to $0$ from Eq. (\ref{eq:joint_distribution}).
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\subsection{Case of $j \geq k+i+1$}
+% \begin{align}
+% 	\mathcal{P}_{k,\, j\in J_5} {}
+% 	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2} \psi(r_1,r_2) \\
+% 	&\times \left[ \frac{1}{(\ln 2)^2} \times \mu(r_1,r_2) - \sum_{i=1}^{\infty}\left\{ g(i)\left( 1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \sum_{j=1}^{k+i} g(j) (1-w_{r_1})^{j} \right\} \right] \\
+% 	&\times \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \psi(r_1,r_2) \\
+% 	&\times \left[ \frac{1}{(\ln 2)^2} \times \mu(r_1,r_2) - \sum_{i=1}^{\infty}\left\{ g(i)\left( 1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \sum_{j=1}^{k+i} g(j) (1-w_{r_1})^{j} \right\} \right].
+% \end{align}
+% where $\psi$ and $\mu$ are defined as follows:
+% \begin{align}
+% 	\psi(r_1,r_2) &= w_{r_1}^2 w_{r_2}^2 (1-w_{r_1})^{-2} (1-w_{r_1}-w_{r_2})^{-1} \\
+% 	\mu(r_1,r_2) &= \frac{1-w_{r_1}}{w_{r_1}} \times \frac{1-w_{r_1}-w_{r_2}}{w_{r_1}} \times \ln w_{r_1} \times \ln \frac{1-w_{r_2}}{w_{r_1}}.
+% \end{align}
+%--------------------------------------------------------------------------------%
+Recall that the joint distribution for $j \geq k+i+1$ is written as
+% When $k+1 \leq j \leq k+i-1$, the joint distribution is provided as
+\begin{align}\begin{split}
+  \mathrm{Pr}[A_n=i,\, A_{n+k}=j] 
+  =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_5(b_1,b_2)] \\
+  &+ \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\}\mathrm{Pr}[e_5(b_1,b_2)],
+\end{split}\end{align}
+where $\mathrm{Pr}[e_5(b_1,b_2)]$ is expressed as
+\begin{align}\begin{split}
+  \mathrm{Pr}[e_5(b_1,b_2)]
+  % =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
+ %  \times (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
+ %  \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
+ %  \times (1-\mathcal{Q}_{r_2})^{k-1} \\
+ %  =&\mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
+ %  \times (1-\mathcal{Q}_{r_1})^{k-1} 
+ %  \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{-k-1}
+ %  \times (1-\mathcal{Q}_{r_2})^{k-1} \\
+ %  &\times (1-\mathcal{Q}_{r_1})^{i} \times \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j}
+  =& w_{r_1}^2  \times w_{r_2}^2 
+  \times (1-w_{r_1})^{-i+j-k-1} 
+  \times (1-w_{r_1}-w_{r_2})^{i-1}
+  \times (1-w_{r_1})^{k-1} \\
+  % =&w_{r_1}^2  \times w_{r_2}^2 
+  % \times (1-w_{r_1})^{k-1} 
+  % \times (1-w_{r_1}-w_{r_2})^{-k-1}
+  % \times (1-w_{r_2})^{k-1} \\
+  =&\psi_k(r_1,r_2)\times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times (1-w_{r_1})^j,
+\end{split}\end{align}
+%
+where
+\begin{align}\begin{split}\label{eq:psi_k}
+  \psi_k(r_1,r_2) 
+  &= w_{r_1}^2 w_{r_2}^2 
+    (1-w_{r_1})^{-k-1} 
+    (1-w_{r_1}-w_{r_2})^{-1}
+    (1-w_{r_1})^{k-1} \\
+  &= w_{r_1}^2 w_{r_2}^2 (1-w_{r_1})^{-2} (1-w_{r_1}-w_{r_2})^{-1}.
+\end{split}\end{align}
+%
+Then, Eq. (\ref{eq:Sk}) is expressed as
+\begin{align}\begin{split}\label{eq:Sk_case5}
+  % \mathcal{P}_k 
+  % =& \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)]\\ 
+  % &+ \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1} \left\{\binom{L}{r_1}-1 \right\}\mathrm{Pr}[e_3(b_1,b_2)]
+  \overline{S}_k 
+  =& \sum_{i=1}^{\infty}\sum_{j=k+i+1}^{\infty} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_5(b_1,b_2)]\\ 
+  &+ \sum_{i=1}^{\infty}\sum_{j=k+i+1}^{\infty} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1} \left\{\binom{L}{r_1}-1 \right\}\mathrm{Pr}[e_5(b_1,b_2)].
+\end{split}\end{align}
+%
+Firstly, we consider the first term in the r.h.s. of Eq. (\ref{eq:Sk_case3}). Let $\overline{B}_1$ be the first term of Eq. (\ref{eq:Sk_case3}). Then, $\overline{B}_1$ is written as
+\begin{align}\begin{split}\label{eq:B_1}
+  % \mathcal{S}_1
+  % &=\sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)] \\
+  % &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+  % \sum_{i=1}^{\infty} \sum_{j=1}^{k+i-1} g(i)g(j)(1-\mathcal{Q}_{r_1})^{i} \times \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \\
+  % &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+  % \sum_{j=k+1}^{\infty} \sum_{i=k+1}^{k+i-1} g(i)g(j)(1-\mathcal{Q}_{r_1})^{i} \times \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \\
+  % &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+  % \sum_{j=k+1}^{\infty} \left\{ g(j) \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \times \sum_{i=j-k+1}^{\infty} g(i)(1-\mathcal{Q}_{r_1})^{i} \right\} 
+  \overline{B}_1
+  &=\sum_{i=1}^{\infty}\sum_{j=k+i+1}^{\infty} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_5(b_1,b_2)] \\
+  &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)
+  \sum_{i=1}^{\infty} \sum_{j=k+i+1}^{\infty} g(i)g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times (1-w_{r_1})^j \\
+  &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)
+  \sum_{i=1}^{\infty} g(i)\left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \sum_{j=k+i+1}^{\infty} g(j) (1-w_{r_1})^j.
+  % &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)
+  % \sum_{j=k+1}^{\infty} \left\{ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \sum_{i=j-k+1}^{\infty} g(i)(1-w_{r_1})^{i} \right\} 
+\end{split}\end{align}
+In the course of the derivation of the above relations, the second equation has been obtained from Eq. (\ref{eq:phi_k}). The third equation has been obtained by exchange of infinite series.
+%
+Then, the infinite sum with respect to $j$ in the last equation of Eq. (\ref{eq:B_1}) can be calculated as
+\begin{align}\begin{split}
+  % \sum_{i=j-k+1}^{\infty} g(i)(1-\mathcal{Q}_{r_1})^{i} 
+  % &= \sum_{i=1}^{\infty} g(i)(1-\mathcal{Q}_{r_1})^{i} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q}_{r_1})^{i} \\
+  % &= -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q}_{r_1})^{i}.
+  \sum_{j=k+i+1}^{\infty} g(j) (1-w_{r_1})^j 
+  &= \sum_{j=1}^{\infty} g(j)(1-w_{r_1})^{j} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \\
+  &= -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j}.
+\end{split}\end{align}
+In the above relations, we use the result of Lemma \ref{lemma:1}.
+Hence, the first term of Eq. (\ref{eq:Sk_case5}) can be expressed as
+\begin{align}
+  % \mathcal{S}_1 
+  % =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)\\
+  % &\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{\mathcal{Q}_{r_2}}{1-\mathcal{Q}_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-\mathcal{Q}_{r_1}}{\mathcal{Q}_{r_1}} \times \ln \mathcal{Q}_{r_1} - \sum_{i=1}^{j-k} g(i)(1-\mathcal{Q}_{r_1})^{i} \right\} \right].
+  \overline{B}_1 
+  =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)\\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right].
+\end{align}
+We can derive the second term of Eq. (\ref{eq:Sk_case5}) in the same way as the first term. Let $\overline{B}_2$ be the second term of Eq. (\ref{eq:Sk_case5}). Then, we have
+\begin{align}\begin{split}
+  \overline{B}_2 =& \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \psi(r_1,r_2) \\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right].
+\end{split}\end{align}
+%
+Therefore, Eq. (\ref{eq:Sk_case5}) can be expressed as
+\begin{align}\begin{split}
+  \overline{S}_k =& \overline{B}_1 + \overline{B}_2 \\
+  =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)\\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right] \\
+  &+\sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \psi(r_1,r_2) \\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right],
+\end{split}\end{align}
+where $\psi_k(r_1,r_2)$ is given in Eq. (\ref{eq:psi_k}).
+% \begin{align}
+%   \phi_k(r_1,r_2) = w_{r_1}^2 w_{r_2}^2 (1-w_{r_1})^{k-1} (1-w_{r_1}-w_{r_2})^{-k-1} (1-w_{r_2})^{k-1}.
+% \end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

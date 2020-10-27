@@ -1,0 +1,59 @@
+\section{Proof of Theorem}
+In this appendix, we provide the proof of the following Theorem.
+\begin{theorem}
+For any $x\in(0,1)$, we have the following relation
+\begin{align}
+	\lim_{x\to 0+} \left[ v(x) + \log_2 x \right] = -\frac{\gamma}{\ln 2} = -0.832746\cdots,
+\end{align}
+where
+\begin{align}
+	v(x) = x\sum_{i=1}^{\infty} (1-x)^{i-1}\log_2 i,
+\end{align}
+and $\gamma$ is Euler's constant defined by
+\begin{align}\label{eq:gamma_def}
+	\gamma := \lim_{n\to\infty}\left(\sum_{i=1}^{n} \frac{1}{i}-\ln n\right).
+\end{align}
+% and $\gamma = \lim_{n\to\infty}\left(\sum_{i=1}^{n} \frac{1}{i}-\ln n\right)$ is Euler's constant.
+\end{theorem}
+%
+\begin{proof}
+Let $s=1-x$. We have
+% \begin{align}
+% 	\lim_{s\to 1-} \left[ v(1-s) + \log_2 (1-s) \right]
+% \end{align}
+%
+\begin{align}\begin{split}
+	v(1-s) + \log_2 (1-s) 
+	&= (1-s)\sum_{i=1}^{\infty} s^{i-1}\log_2 i + \log_2 (1-s) \\
+	&= \frac{1}{\ln2} \left\{ (1-s) \sum_{i=1}^{\infty}s^{i-1}\ln i + \ln(1-s) \right\} \\
+	&= \frac{1}{\ln2} \left\{ (1-s)\times \frac{1}{1-s} \sum_{i=1}^{\infty}s^{i} \times \ln \frac{i+1}{i} - \sum_{i=1}^{\infty} \frac{s^i}{i} \right\} \\
+	&= \frac{1}{\ln2} \sum_{i=1}^{\infty}s^{i} \left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\} 
+\end{split}\end{align}
+From the above equations, we have
+\begin{align}\begin{split}
+	\lim_{s\to 1-} \left[ v(1-s) + \log_2 (1-s) \right] 
+	&=\frac{1}{\ln2} \lim_{s\to 1-} \left[ \sum_{i=1}^{\infty} s^{i} \left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\} \right]\\
+	&=\frac{1}{\ln2} \sum_{i=1}^{\infty} \lim_{s\to 1-} \left[ s^{i} \left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\} \right] \\
+	&=\frac{1}{\ln2} \sum_{i=1}^{\infty}\left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\}.
+\end{split}\end{align}
+% \begin{align}
+% 	\lim_{s\to 1-} \left[ v(1-s) + \log_2 (1-s) \right] 
+% 	=\frac{1}{\ln2} \sum_{i=1}^{\infty} \left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\}.
+% \end{align}
+For the derivation of the second equation, we have used the fact that the infinite series converges absolutely which allows us to exchange the term. 
+%
+Since $\ln n$ can be written as 
+\begin{align}
+	\ln n = \ln \left( \frac{2}{1}\cdot\frac{3}{2}\cdot\frac{4}{3}\cdot\cdots\frac{n}{n-1}\right) = \sum_{k=1}^{n-1}\ln\left(1+\frac{1}{k}\right),
+\end{align}
+Euler's constant $\gamma$ defined by Eq. (\ref{eq:gamma_def}) can also be represented as
+\begin{align}\begin{split}
+	\gamma &= \lim_{n\to\infty} \left[ \sum_{k=1}^{n-1}\left\{ \frac{1}{k} - \ln \left(1+\frac{1}{k}\right)\right\} + \frac{1}{n} \right] \\
+	&=\sum_{n=1}^{\infty}\left\{ \frac{1}{n} - \ln \left(1+\frac{1}{n}\right) \right\}.
+\end{split}\end{align}
+Therefore, we arrive at the following result
+\begin{align}
+	\lim_{s\to 1-} \left[ v(1-s) + \log_2 (1-s) \right]  =- \frac{\gamma}{\ln 2}.
+\end{align}
+The theorem is obtained if we substitute $s$ into $1-x$.
+\end{proof}

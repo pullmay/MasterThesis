@@ -1,0 +1,45 @@
+This thesis is organized as follows. 
+%
+%Section2: Universal Statistical Test
+\par
+%
+In Section \ref{sec:universal}, we introduce the statistical tests proposed by Maurer in 1992 \cite{maurer1992universal} and by Coron in 1999 \cite{coron1999security}. These statistical tests are referred to as ``Maurer's universal test'' and ``Coron's universal test'', respectively. 
+%Maurer's test と Coron's test の関係は？
+Coron's universal test is an improvement of Maurer's universal test.
+%
+We also introduce the statistical test proposed by Yamamoto and Liu in 2016 \cite{yamamoto2016highly}. The test is referred to as ``highly sensitive universal statistical test'' and the test is constructed on the basis of Maurer's universal test and Coron's universal test.
+% We also introduce ``Highly sensitive universal statistical test'' proposed in 2016 \cite{yamamoto2016highly}. The highly sensitive test is constructed on the basis of Maurer's universal test and Coron's universal test. 
+%主な相違点は，検定対象の系列をそのまま使うのではなく，あえて偏りを持たせて検定する点にある．こうすることによって，偏りが検出しやすいということを動機としている．
+% The main difference lies in the way of using a binary sequence being tested. In Maurer's universal test and Coron's universal test (and most of the statistical tests for evaluating a randomness), a tested sequence are used without change. On the other hand, in highly sensitive universal test, a tested sequence are converted into another binary sequence as a probability of taking each bit with some probability.
+%
+In the highly sensitive test, a tested sequence is converted to another binary sequence as each bit of a tested sequence is stochastically flipped under a certain distribution.
+%
+% In general, most of the statistical tests for evaluating a randomness consider to use the sequence with no change, whereas the highly sensitive test do not use a binary sequence as it is. 
+% It is suggested in \cite{yamamoto2016highly} that the non-randomness can be detected much more sensitive than 
+% Maurer's and Coron's universal tests.
+It is suggested in \cite{yamamoto2016highly} that the converting make the test more sensitive.
+%
+%Section3: Distribution of A_n that is necessary to derive the variance for the reference distribution of highly sensitive test.
+%導出するのは，A_nに関する分布である．ここで，Aというのは出てきていないから，integer valued variableとでも言うしかないか．
+%このA_nは何かと言うと，要は系列から算出される値である．A_nの分布はHSTにおける帰無仮説のもとでの参照分布を導出するために必要．
+%truly random sequence 
+\par
+In Section \ref{sec:distribution}, we derive one and two dimensional distributions. We need these distribution to derive the variance for the reference distribution of the highly sensitive test. In existing literature, the theoretical results for a truly random sequence without flipping have been obtained. However, we cannot apply the results directly to the highly sensitive test since a tested sequence is biased.
+%
+% In Section \ref{sec:distribution}, we derive the marginal distribution and joint distribution of integer valued variable whose value is determined by a binary sequence. The distribution is necessary to derive the variance for the reference distribution of highly sensitive universal test under the null hypothesis. In existing literature, the distribution for a truly random sequence are studied and has been obtained theoretical value, however, the result cannot apply directly to highly sensitive universal test since a tested sequence is biased.
+% 
+%Section4: Deriving the variance for the rectangle
+%参照分布の分散を理論的に導出する．先行研究では，擬似乱数を用いた実験によって得られた数値を検定で用いている．
+\par
+% In Section \ref{sec:3}, we derive the variance for the reference distribution of highly sensitive universal test under the null hypothesis theoretically. 
+In Section \ref{sec:3}, we derive the theoretical variance for the reference distribution of the highly sensitive test. 
+% In existing literature, a value obtained by a numerical experiment using a pseudo random number generator has been used.
+%
+%実験結果について（順番を再検討するべき）
+We also show some results of experiments in this section. 
+Firstly, we show the variance can be computed accurately by the derived equation. 
+Secondly, we show the fitted curve for computing the variance for effectively. 
+Thirdly, we show the difference between the highly sensitive test with proposed parameter and the test with the existing value. 
+%
+\par
+In Section \ref{sec:conclusion}, we conclude this thesis.

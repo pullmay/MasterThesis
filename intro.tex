@@ -1,0 +1,154 @@
+Throughout this thesis, we only consider a binary sequence.
+%
+A random sequence is intuitively considered as a number sequence without any recognizable patterns or regularities, and it is not easy to define such properties mathematically.
+% しかし，数学的にそう言う性質を定義するのはなかなか難しい．
+% However, it is not easy to define such properties mathematically.
+% なお，弊修論ではbunary sequenceのみを考察の対象とする．
+% Assume that a number sequence consists of ``$0$'' and ``$1$'',
+The reader may consider a sequence to be random if its each bit is independent and symmetrically distributed, but this description is inconsistent with an intuitive definition. When we intuitively say ``random sequence'', this term is used to represent a specific sequence, not to represent a sequence of random variables.
+% その場合，ある人は以下のように言うかもしれない： a sequence whose each bit is independent and symmetrically distributed is considered as a random sequence. 
+% Then, one say that a sequence whose each bit is independent and symmetrically distributed is considered to be a random sequence.
+% しかし，我々が直感的に「乱数」と言う場合，それは具体的な数列に対して使われる言葉であり，確率変数列に対して使う用語ではないので，問題はもっと複雑じゃ．
+% However, when we intuitively say ``random sequence'', the problem is more complicated because it is a term used for a specific sequence, not for a sequence of random variables.
+%
+% これまでに，いろんな定義が提唱されてきており，それらの定義の関係について研究がなされてきたよ．
+\par
+Several approaches to define a random sequence have been proposed.
+ % and studied the relationship between these definitions 
+%
+% 計算論の分野ではKolmogorov複雑性による定義が複数提案されている．
+% ここで，Kolmogorov複雑性とは，有限長のデータ列の複雑さを表す指標のひとつであり，出力結果がそのデータに一致するプログラムの長さの最小値として定義される．
+% 厳密には〜のように定義される．この定義のもと，ランダム性を次のように定義できる．すなわち，与えられた系列に対してそのKolmogorov複雑性がその系列の長さとほとんど一致しているならば，その系列はランダムである．このアプローチによって有限長の系列に対するランダム性を定義することができるわけだが，この複雑性を実効的に計算することができないことが知られている．また，この複雑性は実行するマシンに依存するという問題もある．	
+%
+% 計算論においてはKolmogorov complexityをベースにした定義が複数提案されている．
+In Algorithmic information theory, several definitions have been proposed based on Kolmogorov 
+complexity \cite{kolmogorov1968three,chaitin1966length,chaitin1969length,chaitin1975theory}. 
+%Note that Kolmogorov complexity is defined to be the minimal computer program.
+% コルモゴロフ複雑性とは，有限長のデータ列に対して使われる概念である．
+% Note that Kolmogorov complexity is a notion used for a finite length data sequence. 
+% Kolmogorov complexity is defined to where a length of sequence is finite.
+% 有限長に対するKolmogorov complexityは... 
+Kolmogorov complexity of a finite sequence is defined as the minimal length of a program which generates the sequence with a given universal machine. Let $s$ be a finite sequence and $u$ be a universal machine. Then, Kolmogorov complexity of $s$ for $u$, $K_u(s)$ is written as 
+\begin{align}
+	K_u(s):= \min_{p:u(p)=s} r(p),	
+\end{align}
+where $p$ is a program that generates $s$ by $u$ and $r (p)$ is the length of the program $p$. 
+%
+Then, a finite binary sequence is regarded as random if its Kolmogorov complexity is almost equal to its length. In other words, a finite binary sequence which cannot be compressed is random. 
+%
+We can define randomness for given finite sequences by its notion, however, it is shown to be impossible to compute Kolmogorov complexity. Furthermore, this complexity depends on a choice of universal machine.
+% 関連する定義として次のような定義があるよ．
+Other definitions for randomness which is associated with the definition by Kolmogorov complexity have been proposed by Demuth \cite{demuth1988remarks}, Martin-L\"{o}f \cite{martin1966definition,martin1971complexity} and Schnorr \cite{schnorr1971unified,schnorr1973process,schnorr1977general}.
+% By Kolmogorov complexity, a randomness of finite binary sequence is defined to be  
+%
+% The definition based on Kolmogorov complexity is one of the most important definition which was proposed by Kolmogorov \cite{kolmogorov1968three} and Chaitin\cite{chaitin1966length,chaitin1969length,chaitin1975theory}. 
+%
+% In this approach, the randomness of a sequence is evaluated by the Kolmogorov complexity. Note that Kolmogorov complexity of a finite string is defined to be the minimal program size that generates the string. Then, a finite sequence is considered to be random if its Kolmogorov complexity is almost equal to its length.
+%
+% weakly chaitin random と包含関係にある定義として
+% It has been proposed other definitions such as
+% \begin{itemize}
+%   \item Demuth randomness \cite{demuth1988remarks}
+%   \item Martin-L\"{o}f randomness \cite{martin1966definition,martin1971complexity}
+%   \item Schnorr randomness \cite{schnorr1971unified,schnorr1973process,schnorr1977general}
+%   \item Kurtz randomness \cite{kautz1991degrees}
+% \end{itemize}
+% Kolmogorov complexityによって有限の系列に対してrandomnessを定義できるが，実際この定義には以下のような問題点がある．
+% ただし，複雑度は計算不能．
+% しかも，プログラムを実行するコンピュータに依存する．など
+% We can define randomness to a finite sequence by Kolmogorov complexity, however, the complexity is not computable. 
+% Moreover, the complexity depends on a machine. To make this precise, a universal computer (or universal Turing machine) must be specified, so that ``program'' means a program for this universal machine.
+%
+% 暗号の文脈では，識別不能という概念で乱数にアプローチする．
+\par
+In cryptography, an approach based on a notion of indistinguishability has been proposed. 
+% （識別不能・擬似乱数生成器・擬似乱数の説明）
+Let $\{X_n\}_{n\geq 1}$ and $\{Y_n\}_{n\geq 1}$ be sequences of random variables. 
+%
+We say $\{X_n\}_{n\geq 1}$ and $\{Y_n\}_{n\geq 1}$ are computationally indistinguishable if for any probabilistic polynomial time algorithm $\mathcal{A}$ and positive polynomial $p$, there exists $k_0$ such that 
+\begin{align}\label{eq:indistinguishable}
+	\bigl| \mathrm{Pr}[\mathcal{A}(X_k) = 1] - \mathrm{Pr}[\mathcal{A}(Y_k) = 1] \bigr| < \frac{1}{p(k)},
+\end{align}
+ for any $k>k_0$.
+%
+% If for any probabilistic polynomial time algorithm $\mathcal{A}$ and polynomial $p$, there exists $k_0$ such that 
+% \begin{align}
+% 	\bigl| \mathrm{Pr}[\mathcal{A}(X_n) = 1] - \mathrm{Pr}[\mathcal{A}(Y_n) = 1] \bigr| < \frac{1}{p(k)}
+% \end{align}
+%  for any $k>k_0$, then $\{X_n\}_{n\geq 1}$ and $\{Y_n\}_{n\geq 1}$ are referred to as ``computationally indistinguishable''. 
+With this computational indistinguishability, we can define a cryptographically secure pseudo random number generator (CSPRNG). 
+%
+% Let $\{0,1\}^{*} = \left( \bigcup_{n\in\mathbb{N}}\{0,1\}^n \right) \cup \{\epsilon\}$, where $\epsilon$ is a null character. 
+% Let $g:\{0,1\}^n \to \{0,1\}^{\ell(n)}$ be a function and $\ell(n)$ is a polynomial of $n$. 
+Let $g_n$ be a map from $\{0,1\}^n$ to $\{0,1\}^{h(n)}$, where $h(n)$ is a polynomial of $n$.
+% Then, a sequence of maps $g =\{g_n\}_{n\geq 1}$ is said to be CSPRNG if it satisfies the following three properties:
+We say that a sequence of maps $g =\{g_n\}_{n\geq 1}$ is CSPRNG if this sequence satisfies the following three properties:
+% Then, a function $g:\{0,1\}^{*}\to\{0,1\}^{*}$ is said to be CSPRNG if it satisfies the following three properties: 
+% \begin{itemize}
+% 	\item $n\geq \ell(n)$
+% 	\item there exists polynomial time algorithm for computing $g$
+% 	\item for any randomized polynomial time algorithm $\mathcal{D}$ and polynomial $p$, there exists $n_0$ such that 
+% 	\begin{align}
+% 		\left| \mathrm{Pr}[\mathcal{D}(g(U_n)) = 1] - \mathrm{Pr}[\mathcal{D}(U_{\ell (n)}) = 1] \right| < \frac{1}{p(n)}
+% 	\end{align}
+% 	for any $n\geq n_0$.
+% \end{itemize}
+\begin{itemize}
+	\item The relation $n < h(n)$ holds for any $n\geq 1$.
+	% \item There exists polynomial time algorithm for computing $g$.
+	\item For any $n\geq 1$ and input $x\in \{0,1\}^n$, there exists a deterministic algorithm for computing $g_n(x)$ in polynomial time depending on $n$.
+	% \item For any probabilistic polynomial time algorithm $\mathcal{D}$, which outputs ``$1$'' or ``$0$'' as a distinguisher
+	% \item For any probabilistic polynomial time algorithm $\mathcal{D}$, $\mathcal{D}(g(U_n))$ and $\mathcal{D}(U_n)$ are computationally indistinguishable, where $U_n$ is a uniform probability distribution on $\{0,1\}^n$.
+	\item $\{g(U_n)\}_{n\geq 1}$ and $\{U_{h(n)}\}_{n\geq 1}$ are computationally indistinguishable, where $U_n$ is a random variable uniformly distributed on $\{0,1\}^n$.
+	% \item Let $U_n$ be a uniform probability distribution on $\{0,1\}^n$. Then, $\mathcal{D}(g(U_n))$ and $\mathcal{D}(U_n)$ are computationally indistinguishable.
+	% \item Let $U_n$ be a random variable for taking uniformly at random from $\{0,1\}^n$. Then, $\mathcal{D}(g(U_n))$ and $\mathcal{D}(U_n)$ are computationally indistinguishable
+\end{itemize}
+% 等確率で {0, 1}^n の値をとる確率変数
+% 暗号で言うところの擬似乱数は，この定義にしたがって生成された系列のことを指す．生成器として例えば〜のようなものがある．
+Pseudo random numbers in cryptography are referred to as sequences generated by a CSPRNG. 
+% A number sequence generated by CSPRNG is called cryptographically secure. 
+% There are Blum--Blum--Shub algorithm \cite{blum1986simple} and Blum--Micali algorithm \cite{blum1984generate} as examples for CSPRNG.
+%特定の条件のもとで，
+Under some assumptions, several algorithms for CSPRNG such as Blum--Blum--Shub algorithm \cite{blum1986simple} and Blum--Micali algorithm \cite{blum1984generate} have been proposed. 
+% しかし，こいつにも問題点がある．
+However, the definition based on computationally indistinguishability also has obstacles such as:
+% ・具体的な有限長の数列に対して乱数を定義しているわけではない
+% ・任意の多項式時間アルゴリズムを相手にするのは現実的には不可能（定義を満たすかどうか調べることが実質的に不可能）
+% ・P=NPならそもそも定義を満たすものがなくなってしまう．
+\begin{itemize}
+	% \item The definition is not for a specific finite sequence.
+	\item For an arbitrary finite sequence, there exist CSPRNG and $x\in\{0,1\}^\ast$ such that the CSPRNG outputs the sequence when $x$ is input. Thus, it is meaningless to define ``randomness'' for a specific sequence by the above definition.
+	\item It is impossible to verify whether a sequence satisfies Eq. (\ref{eq:indistinguishable}) for any probabilistic polynomial time algorithm.
+	\item There exists no sequence satisfying the definition if $\mathrm{P}=\mathrm{NP}$.
+\end{itemize}
+%この他にも様々な定義があり，次のようなものがある．
+% Other definitions for randomness are proposed by Demuth \cite{demuth1988remarks}, Martin-L\"{o}f \cite{martin1966definition,martin1971complexity} and Schnorr \cite{schnorr1971unified,schnorr1973process,schnorr1977general}.
+% \begin{itemize}
+%   \item Demuth randomness \cite{demuth1988remarks}
+%   \item Martin-L\"{o}f randomness \cite{martin1966definition,martin1971complexity}
+%   \item Schnorr randomness \cite{schnorr1971unified,schnorr1973process,schnorr1977general}
+%   \item Kurtz randomness \cite{kautz1991degrees}
+%   % \item Kurtz randomness
+% \end{itemize}
+% 結論として，具体的な有限長の数列に対して乱数を定義することは難しい
+To summarize, it is not easy to define randomness to a specific finite sequence.
+%
+\par
+In spite of the difficulty of defining randomness, ``random sequences'' are widely used in many fields such as numerical simulations (e.g., Monte Carlo method), randomized algorithm (e.g., Simulated Annealing), and cryptography (e.g., key generation). 
+% 工学的には物理乱数生成器や擬似乱数生成器（暗号でいうところの擬似乱数生成器ではない）で生成された数列を乱数として使うお．
+In engineering applications, a sequence generated by a hardware (or physical) random number generator (HRNG) or a pseudo random number generator (PRNG) are extensively used.
+% In engineering applications, a sequence generated by a hardware (or physical) random number generator (HRNG) or a pseudo random number generator (PRNG) are extensively used for generating sequences. 
+%
+Note that PRNG does not mean CSPRNG. 
+% 物理乱数生成器・擬似乱数生成器とは
+An HRNG is a device for generating numbers from a physical process such as thermal noise in a transistor, whereas a PRNG is a deterministic algorithm for generating numbers.
+%
+% In general, 物理乱数生成器の出力は予測しにくい．
+In general, it is not easy to predict the output generated by an HRNG. On the other hand, a PRNG is important in practice because it generates a sequence much faster than an HRNG and a sequence can be reproductive by using the same initial value called seed. These advantages are useful in many situations such as numerical experiments.
+%
+% ただ，結局，こいつらは応用先で求められる乱数としての性質を近似的にもつ数列を生成するものにすぎない．
+% However, both generators are nothing but generate a number sequence whose property is approximately random sequence which is required in fields. 
+However, both generators are nothing but generate a number sequence regarded as a random sequence approximately which is required for applications.
+% しかも，ちゃんと近似しているのか，チェックが必要．
+% Both of generators are widely used in many fields, however, a number sequence is only approximated 
+Hence, such sequences are necessary to be examined whether it satisfy the properties as ``random sequences'' or not.
