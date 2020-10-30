@@ -13,15 +13,10 @@ and $\gamma$ is Euler's constant defined by
 \begin{align}\label{eq:gamma_def}
 	\gamma := \lim_{n\to\infty}\left(\sum_{i=1}^{n} \frac{1}{i}-\ln n\right).
 \end{align}
-% and $\gamma = \lim_{n\to\infty}\left(\sum_{i=1}^{n} \frac{1}{i}-\ln n\right)$ is Euler's constant.
 \end{theorem}
 %
 \begin{proof}
 Let $s=1-x$. We have
-% \begin{align}
-% 	\lim_{s\to 1-} \left[ v(1-s) + \log_2 (1-s) \right]
-% \end{align}
-%
 \begin{align}\begin{split}
 	v(1-s) + \log_2 (1-s) 
 	&= (1-s)\sum_{i=1}^{\infty} s^{i-1}\log_2 i + \log_2 (1-s) \\
@@ -36,10 +31,6 @@ From the above equations, we have
 	&=\frac{1}{\ln2} \sum_{i=1}^{\infty} \lim_{s\to 1-} \left[ s^{i} \left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\} \right] \\
 	&=\frac{1}{\ln2} \sum_{i=1}^{\infty}\left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\}.
 \end{split}\end{align}
-% \begin{align}
-% 	\lim_{s\to 1-} \left[ v(1-s) + \log_2 (1-s) \right] 
-% 	=\frac{1}{\ln2} \sum_{i=1}^{\infty} \left\{ \ln \left(1+\frac{1}{i}\right) - \frac{1}{i} \right\}.
-% \end{align}
 For the derivation of the second equation, we have used the fact that the infinite series converges absolutely which allows us to exchange the limits. 
 %
 Since $\ln n$ can be written as 
