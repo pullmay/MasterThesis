@@ -2,50 +2,23 @@
 % \documentclass[english]{ampmt} % pdflatex
 \documentclass[dvipdfmx,english]{ampmt} % dvipdfmx
 
-%%% Class options:
-%%% chapter:   \chapter command is available (use report.cls).
-%%% Options for article or report are also accepted.
-%行間調整
-% \renewcommand{\baselinestretch}{1.1}
-%
-% line numbers
-% \usepackage{lineno}
-% \newcommand*\patchAmsMathEnvironmentForLineno[1]{
-%   \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-%   \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
-%   \renewenvironment{#1}
-%      {\linenomath\csname old#1\endcsname}
-%      {\csname oldend#1\endcsname\endlinenomath}}
-% \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{
-%   \patchAmsMathEnvironmentForLineno{#1}
-%   \patchAmsMathEnvironmentForLineno{#1*}}
-% \AtBeginDocument{
-% \patchBothAmsMathEnvironmentsForLineno{equation}
-% \patchBothAmsMathEnvironmentsForLineno{align}
-% \patchBothAmsMathEnvironmentsForLineno{flalign}
-% \patchBothAmsMathEnvironmentsForLineno{alignat}
-% \patchBothAmsMathEnvironmentsForLineno{gather}
-% \patchBothAmsMathEnvironmentsForLineno{multline}
-% }
-% \linenumbers
 %----for warning
-\DeclareFontShape{JT2}{mc}{m}{it}{<->ssub*mc/m/n}{}
-\DeclareFontShape{JT2}{mc}{m}{sl}{<->ssub*mc/m/n}{}
-\DeclareFontShape{JT2}{mc}{m}{sc}{<->ssub*mc/m/n}{}
-\DeclareFontShape{JT2}{gt}{m}{it}{<->ssub*gt/m/n}{}
-\DeclareFontShape{JT2}{gt}{m}{sl}{<->ssub*gt/m/n}{}
-\DeclareFontShape{JT2}{mc}{bx}{it}{<->ssub*gt/m/n}{}
-\DeclareFontShape{JT2}{mc}{bx}{sl}{<->ssub*gt/m/n}{}
-%
-\DeclareFontShape{JY2}{mc}{m}{it}{<->ssub*mc/m/n}{}
-\DeclareFontShape{JY2}{mc}{m}{sl}{<->ssub*mc/m/n}{}
-\DeclareFontShape{JY2}{mc}{m}{sc}{<->ssub*mc/m/n}{}
-\DeclareFontShape{JY2}{gt}{m}{it}{<->ssub*gt/m/n}{}
-\DeclareFontShape{JY2}{gt}{m}{sl}{<->ssub*gt/m/n}{}
-\DeclareFontShape{JY2}{mc}{bx}{it}{<->ssub*gt/m/n}{}
-\DeclareFontShape{JY2}{mc}{bx}{sl}{<->ssub*gt/m/n}{}
-%----
-%----
+% \DeclareFontShape{JT2}{mc}{m}{it}{<->ssub*mc/m/n}{}
+% \DeclareFontShape{JT2}{mc}{m}{sl}{<->ssub*mc/m/n}{}
+% \DeclareFontShape{JT2}{mc}{m}{sc}{<->ssub*mc/m/n}{}
+% \DeclareFontShape{JT2}{gt}{m}{it}{<->ssub*gt/m/n}{}
+% \DeclareFontShape{JT2}{gt}{m}{sl}{<->ssub*gt/m/n}{}
+% \DeclareFontShape{JT2}{mc}{bx}{it}{<->ssub*gt/m/n}{}
+% \DeclareFontShape{JT2}{mc}{bx}{sl}{<->ssub*gt/m/n}{}
+% %
+% \DeclareFontShape{JY2}{mc}{m}{it}{<->ssub*mc/m/n}{}
+% \DeclareFontShape{JY2}{mc}{m}{sl}{<->ssub*mc/m/n}{}
+% \DeclareFontShape{JY2}{mc}{m}{sc}{<->ssub*mc/m/n}{}
+% \DeclareFontShape{JY2}{gt}{m}{it}{<->ssub*gt/m/n}{}
+% \DeclareFontShape{JY2}{gt}{m}{sl}{<->ssub*gt/m/n}{}
+% \DeclareFontShape{JY2}{mc}{bx}{it}{<->ssub*gt/m/n}{}
+% \DeclareFontShape{JY2}{mc}{bx}{sl}{<->ssub*gt/m/n}{}
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -73,7 +46,6 @@
 \newcommand{\proofname}{Proof}
 \makeatother
 %% upto here----------------------------
-%----
 %--- Title ----------------------------------------------------------------------
 \title[Study on a further improvement of \\ Maurer's universal statistical test]
       {Study on a further improvement of \\  Maurer's universal statistical test}
@@ -92,17 +64,13 @@
 \def\numberofspines{1}
 %-- Abstract --------------------------------------------------------------------
 \abstract{%
-%Maurer’s universal statistical test は 2 値ビット列の非ランダム性を検出する統計検定であり，NIST SP 800–22 に採用されている.Maurer’s test では，ビット列のエントロピーに基づく参照分布を計算する.さら に検出力を高めるため，系列中の “1” を一定の確率で “0” に変換することによって，“1” の発生頻度が qˆ である ように系列を変換し，変換後の系列に対して検定を行う手法が提案された.この手法では，p 値の算出の際に参 照分布の分散が必要であるが，一般の qˆ に対する分散を計算する方法は提示されておらず，擬似乱数を用いたシ ミュレーションによって算出された値が使用されている.乱数の検定を行う上で，定数であるパラメータの算出 という本質的でない部分に乱数を使用していることは好ましいとは言えない.そこで本研究では，参照分布の分 散を理論的に導出する.
 Maurer's universal statistical test is a hypothesis test for evaluating the randomness of a binary sequence and it is included in NIST SP 800-22 which is one of the most famous test suites. 
 %
 The test statistic of Maurer's test relates to the entropy of a tested sequence and hence the test can detect various defects of the sequence about randomness.
-% In Maurer's test, a test static value related to the entropy of a sequence is calculated. 
-% It has been reported that the deviation from an ideal binary sequence can be detected much more sensitive than Maurer's test by converting a tested sequence into another sequence. 
 It has been reported that flipping a part of bits in a sequence makes Maurer's test more sensitive.
 %
 The test with flipping is called highly sensitive universal statistical test. To perform the highly sensitive test, the variance for the reference distribution is necessary, however, the theoretical value has not been derived.
 %
-% The variance for highly sensitive test is necessary for evaluating the randomness, however, the theoretical value has not been analyzed. 
 In this thesis, we theoretically derive the variance for the reference distribution of the highly sensitive test and investigate the validity for testing randomness.
 }
 %-- Packages and definitions of your own macros ---------------------------------
@@ -118,21 +86,6 @@ In this thesis, we theoretically derive the variance for the reference distribut
 \usepackage{enumerate}
 \usetikzlibrary{patterns}
 %-- Control of output -----------------------------------------------------------
-
-%%% If you don't want to output body text, activate the next line.
-%% \outputbodyfalse
-
-%%% If you don't want to output covers at the end of PDF, activate the next line.
-%% \outputcoverfalse
-
-%%% If you don't want to output abstract for submission at the end of PDF,
-%%% activate the next line.
-%% \outputabstractforsubmissionfalse
-
-%%% If you want to change the layout, use \geometry command provided by
-%%% the geometry package.
-%% \geometry{hmargin=3cm,vmargin=2cm}
-
 \begin{document}
 \ifoutputbody
 %-- Inside cover, abstract and table of contents ---------------------------------
@@ -148,172 +101,15 @@ In this thesis, we theoretically derive the variance for the reference distribut
 \subsection{Random sequence}%乱数列 %definition/application/generation
 %乱数列は直感的には何のパターンや規則も持たない数字の列であると考えることができるが，その定義を明確に述べることは極めて難しい．なぜなら，ある系列が他のある系列よりもよりランダムであると述べる
 \input{intro}
-% A random sequence is intuitively considered as a number sequence of binary digits having no any recognizable patterns or regularities. More precisely, a sequence whose each bit is independent and symmetrically distributed is considered as a random sequence. However, it seems impossible to argue that one particular sequence is more random than another sequence because every sequence is generated with the same probability if a sequence is truly random. 
-% %
-% So far, several approaches to define a random sequence have been proposed and studied the relationship between these definitions. The definition based on Kolmogorov complexity is one of the most important definition which was proposed by Kolmogorov \cite{kolmogorov1968three} and Chaitin\cite{chaitin1966length,chaitin1969length,chaitin1975theory}. 
-% %
-% In this approach, the randomness of a sequence is evaluated by the Kolmogorov complexity. Note that Kolmogorov complexity of a finite string is defined to be the minimal program size that generates the string. Then, a finite sequence is considered to be random if its Kolmogorov complexity is almost equal to its length.
-% %
-% Examples of other approaches to define a random sequence are as follows.
-% \begin{itemize}
-%   \item Demuth randomness \cite{demuth1988remarks}
-%   \item Martin-L\"{o}f randomness \cite{martin1966definition,martin1971complexity}
-%   \item Schnorr randomness \cite{schnorr1971unified,schnorr1973process,schnorr1977general}
-%   \item Kurtz randomness \cite{kautz1991degrees}
-%   % \item Kurtz randomness
-% \end{itemize}
-%
-% Random sequences are widely used in many fields such as numerical simulations (e.g., Monte Carlo method), randomized algorithm (e.g., Simulated Annealing), and cryptography (e.g., key generation).
-%
-% It seems impossible to argue that one particular sequence is more random than another sequence because every sequence is generated with the same probability if a sequence is generated by a binary symmetric source. However, several approach to define randomness for sequences has been developed. 
-%
-% It is not easy to describe the definition of ``randomness'' since there is no clear boundary between non-random sequences between random sequences. 
-%
-% In mathematics, various definition of randomness is proposed by researchers. Martin-L\"{o}f randomness is known as a most common definition of randomness. Another definition is characterized as Kolmogorov complexity proposed by Kolmogorov.
-% Considering a practical viewpoint on engineering, the definitions above are somewhat difficult to use. 
-%
-% \par
-% Random sequences are widely used in many fields such as numerical simulations (e.g., Monte Carlo method), randomized algorithm (e.g., Simulated Annealing), and cryptography (e.g., key generation). Although a sequence of random number is great demand in many fields, a method for generating a truly random sequence has not been developed so far. On behalf of that, methods for generating a sequence of numbers whose property approximates the one of a sequence of truly random numbers have been developed. 
-% %
-% There are mainly two types of methods for generating a random sequence. One is a hardware (or physical) random number generator (HRNG) that is a device for generating random numbers from a physical process such as thermal noise in a transistor. The other is a pseudo random number generator (PRNG) that is a deterministic algorithm for generating a sequence of numbers. 
-% %
-% A sequence generated by a HRNG is completely unpredictable and can be regarded as closer to truly random sequence, whereas a sequence generated by a PRNG is not truly random since it is completely determined by an initial value called seed. 
-% %
-% It may seem a HRNG is better random number generator, however, a PRNG is important in practice because it generates a sequence faster than a HRNG, and a sequence can be reproductive by using the same seed. These advantages are useful in many situations such as numerical simulations. 
-% Considering the , it is an advantage for adapting a PRNG because a sequence is reproductive by using the same seed. Another advantage of a PRNG compared with a HRNG is easy to implement and 
-%
-% A pseudo random number generator (PRNG) is a deterministic algorithm for generating sequences of binary digits.
-% The sequences generated by PRNG is not truly random, because it is completely determined by an initial value called seed.
-% Another method for generating sequences is hardware random number generator. However, PRNG is much more important in a practical viewpoint on engineering, because of the speed for generating sequences and reproducibility.
-% %
-% PRNG have numerous applications such as numerical simulations (e.g., Monte Carlo method), randomized algorithm (e.g., Simulated Annealing), cryptography (e.g., key generation), etc. In particular, it requires unpredictability property to make it secure in use of cryptography.
-%-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \subsection{Tests for randomness}\label{subsec:1-2}%乱数検定
 \input{tests_for_randomness}
-%乱数生成器から出力された系列が乱数が持つべき性質を満たしているのかを確認・テストすることは重要な問題である，
-%工学的な応用の場面で用いられる乱数においては，統計的な性質を満たしていればよい．一方，暗号で用いられる乱数においては，激しい攻撃にも耐えられる必要がある
-%暗号で用いられる系列は，予測不可能性という性質が必要である．すなわち，系列の部分列から次のビットが何であるかを予測することができない系列であることが求められる．しかしながら，与えられた系列がそのような性質を満たすのかどうかを調べることは困難である．
-% The issue of evaluating the randomness of a binary sequence generated by a random number generator is a significant problem. It would be enough to satisfy some statistical properties when it is used for engineering applications such as Monte Carlo simulations. On the other hand, more strict properties would be required when it is used for cryptography such as a key generation, since it should not be predicted the next bit even if the parts of sequence are leaked out. 
-%
-%前節で述べた定義を満たしているかどうかを確かめればよいと思われるかもしれないが，それらの定義は無限列に対して定義されているので現実的ではない．
-%コルモゴロフ複雑性を用いてランダム性を判定すればよいと思われるかもしれないが，計算することができない．
-%
-%そこで，暗号用途に適した特性を持つような擬似乱数の定義として「暗号学的擬似乱数」が提唱された．それは次のようなものである．
-%この定義と同値な条件として，Yaoによる次ビット予測テストによる特徴づけがある．実際に，このテストを行うことは現実的ではない．なぜなら...．
-%そこで通常は，有限個の統計的検定を複数個組み合わせたtest suiteによってrandomnessを判定することが考えられる． 
-% %
-% It may be considered to verify whether a given sequence satisfies the definition presented in previous subsection, however, it is not practical because most of these definitions are defined to an infinite sequence. Although the definition by Kolmogorov complexity is defined to a finite sequence, it has been proven that the complexity is not computable.
-%
-%論理の一貫性！
-%そこで，通常は統計的な仮説検定に基づいて系列のランダム性を評価する．
-% 
-% To evaluate the randomness of a given sequence, statistical hypothesis test has been extensively considered to evaluate the randomness of a binary sequence.
-% A number of statistical tests have been proposed to verify whether a sequence satisfies the definition of randomness approximately or not. In most of the cases, the randomness is evaluated by multiple statistical tests since a statistical test is designed to detect the specific defect of a binary sequence, and cannot detect any other types of non-randomness.
-%
-% \par
-% NIST Special Publication 800-22 (NIST SP 800-22) \cite{rukhin2001statistical,bassham2010sp} proposed by National Institute of Standards and Technology (NIST) is one of the standard statistical test suite that was originally used for the evaluation of selecting Advanced Encryption Standard (AES) algorithm. It can be employed for evaluating the randomness of a binary sequence generated by random number generators.
-%
-%帰無仮説は与えられた系列は乱数である．もっと詳しく言うと，与えられた系列は{0,1}^n上の一様分布から生成された，である．
-% NIST SP 800-22 consists of fifteen kinds of statistical tests, and the null hypothesis under each test $\mathcal{H}_0$ is that a given binary sequence is truly random, that is, a given sequence of length $n$ is considered to be generated by uniform distribution on $\{0,1\}^{n}$. Associated with the null hypothesis, the alternative hypothesis $\mathcal{H}_1$ is that the sequence being tested is not random.
-%NISTにおける検定方法の概略を述べる．まず，与えられた系列から検定統計量と呼ばれる実数を計算する．その値を理想的な乱数の場合における値と比較することによって，ランダム性を評価する．
-% According to the latest version of NIST SP 800-22 Revision 1a \cite{bassham2010sp}, the process of every test is basically the same and described as follows. For a tested binary sequence of length $n$, a p-value is computed. If p-value satisfies p-value $\geq \alpha$, the null hypothesis $\mathcal{H}_0$ is accepted, where $\alpha$ is a significance level of the testing hypothesis. Repeat the same procedure for $m$ sample sequences and obtain $m$ p-values. To examine more in detail, the following two additional statistical tests are recommended in \cite{bassham2010sp} to execute. 
-% \begin{enumerate}
-  % %各系列に対してp>=alphaなる確率は，1-alphaで与えらえる．この試行をｍ回行うと，平均でm(1-alpha)，分散malpha(1-alpha)となる．
-  % \item Let $m_p$ be the number of sequences whose p-value satisfies p-value $\geq \alpha$ for given $m$ sequences. The null hypothesis $\mathcal{H}_0$ is rejected if $m_p$ lies outside the significant interval $[m(1-\alpha)-3\sigma, m(1-\alpha)+3\sigma]$, where $\sigma = \sqrt{m\alpha(1-\alpha)}$ is a standard deviation for the truly random sequence.
-  %
-  % \item Let $m_p$ be the number of sequences whose p-value satisfies p-value $\geq \alpha$ for given $m$ sequences. If $m$ is large enough, $m_p/m$ can be approximated by a normal random variable, with expected value $1-\alpha$ and standard deviation $\sigma=\sqrt{\alpha(1-\alpha)/m}$. The null hypothesis $\mathcal{H}_0$ is rejected if $m_p/m$ lies outside the significant interval $[1-\alpha-3\sigma,1-\alpha+3\sigma]$.
-  %
-%   \item The distribution of the $m$ p-values against the uniform distribution is tested with a Chi-Square goodness of fit test in $k$ bins. This is again a statistical test, which yields a level-two p-value $p_T$. Given a significance level $\alpha_T$, the null hypothesis $\mathcal{H}_0$ is rejected if $p_T \leq \alpha_T$.
-% \end{enumerate}
-% Parameters are recommended in \cite{bassham2010sp} to choose as $m=1000,\,\alpha=0.01,\,k=10$ and $\alpha_T=0.0001$. 
-% Repeat the same procedure for $m$ tested sequences and compute $m$ p-value. The recommendation is $\alpha=0.01$. Count the number of tested sequences such that p-value $\geq \alpha$ and define by $m_p$. Then, the assumption under of randomness, $m_p$ follows $\mathrm{Bin}(m,1-\alpha)$, which is approximated by $\mathcal{N}(m(1-\alpha),m\alpha(1-\alpha))$, and $m_p/m$approximately follows $\mathcal{N}(1-\alpha,\frac{\alpha(1-\alpha)}{m})$. Hence, the range of acceptable rate is determined by
-% \begin{align}
-%    1-\alpha-3\sqrt{\frac{\alpha(1-\alpha)}{m}} < \frac{m_p}{m} < 1-\alpha+3\sqrt{\frac{\alpha(1-\alpha)}{m}},
-% \end{align} 
-% and it is concluded that tested sequences are non-random if the above proportion does not hold. In the next place, the distribution of p-values are considered. The p-value of truly random sequences distributes uniformly over $(0,1)$. 
-%
-% \par
-% There are TestU01 test suite \cite{l2007testu01}, the BSI (Bundesamt fr Sicherheit in der Informationstechnik) test suite \cite{schindler1999functionality,killmann2001proposal}, Marsaglia's DIEHARD test suite, Crypt-X statistical test suite \cite{caelli1992crypt} and FIPS 140-2 test suite \cite{fips2001140} as an example of other statistical test suits for evaluating a random number generated.
-% Other statistical test suites for evaluating a random number generator are TestU01 test suite \cite{l2007testu01}, the BSI (Bundesamt fr Sicherheit in der Informationstechnik) test suite \cite{schindler1999functionality,killmann2001proposal}, Marsaglia's DIEHARD test suite, Crypt-X statistical test suite \cite{caelli1992crypt}, FIPS 140-2 test suite \cite{fips2001140}, etc. 
-%
-% Note that the binary sequence being tested cannot be regarded as random even if it passes all the 15 statistical tests. 
-%
-% Since it is hard to define the ``randomness'', hypothesis tests are carried out by setting several evaluation criteria.
-% Consequently, the randomness of sequences cannot be guaranteed by the statistical tests, though non-randomness sequences can be rejected.
-% 
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-% \subsection{Notation}
-% The notation $\mathbb{N},\,\mathbb{R}$ are the set of natural numbers and the set of real numbers, respectively.
-% A symbol $B$ denotes the set $\{0,1\}$ and $B^n$ denotes the set of binary strings of length $n$. For a binary sequence $x^n=x_1,x_2,\dots,x_n$, a symbol $b_k$ denotes the $k$-th substring $b_k=x_{L(k-1)+1},x_{L(k-1)+2},,\dots,x_{Lk}$ 
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \subsection{Outline}%概要
 \input{outline}
-% The thesis is organized as follows. 
-% %
-% %Section2: Universal Statistical Test
-% \par
-% In Section \ref{sec:universal}, we show the statistical tests proposed by Maurer in 1992 \cite{maurer1992universal} and by Coron in 1999 \cite{coron1999security}. These statistical tests are referred to as ``Maurer's universal test'' and ``Coron's universal test'', respectively. We also show the statistical test called ``Highly sensitive universal statistical test'' that has been proposed in 2016 \cite{yamamoto2016highly}. The highly sensitive universal test is constructed on the basis of Maurer's universal test and Coron's universal test. 
-% %主な相違点は，検定対象の系列をそのまま使うのではなく，あえて偏りを持たせて検定する点にある．こうすることによって，偏りが検出しやすいということを動機としている．
-% The main difference lies in the way of using a binary sequence being tested. In Maurer's universal test and Coron's universal test (and most of the statistical tests for evaluating a randomness), a tested sequence are used without change. On the other hand, in highly sensitive universal test, a tested sequence are converted into another binary sequence as a probability of taking each bit with some probability.
-% %
-% % In general, most of the statistical tests for evaluating a randomness consider to use the sequence with no change, whereas the highly sensitive test do not use a binary sequence as it is. 
-% It is suggested in \cite{yamamoto2016highly} that the non-randomness can be detected much more sensitive than 
-% Maurer's and Coron's universal tests.
-% %
-% %Section3: Distribution of A_n that is necessary to derive the variance for the reference distribution of highly sensitive test.
-% %導出するのは，A_nに関する分布である．ここで，Aというのは出てきていないから，integer valued variableとでも言うしかないか．
-% %このA_nは何かと言うと，要は系列から算出される値である．A_nの分布はHSTにおける帰無仮説のもとでの参照分布を導出するために必要．
-% %truly random sequence 
-% \par
-% In Section \ref{sec:distribution}, we derive the marginal distribution and joint distribution of integer valued variable whose value is determined by a binary sequence. The distribution is necessary to derive the variance for the reference distribution of highly sensitive universal test under the null hypothesis. In existing literature, the distribution for a truly random sequence are studied and has been obtained theoretical value, however, the result cannot apply directly to highly sensitive universal test since a tested sequence is biased.
-% % 
-% %Section4: Deriving the variance for the rectangle
-% %参照分布の分散を理論的に導出する．先行研究では，擬似乱数を用いた実験によって得られた数値を検定で用いている．
-% \par
-% In Section \ref{sec:3}, we derive the variance for the reference distribution of highly sensitive universal test under the null hypothesis theoretically. 
-% % In existing literature, a value obtained by a numerical experiment using a pseudo random number generator has been used.
-% %
-% We also show the results of some kinds of computational experiment in this section. Firstly, we show the variance can be computed accurately by the derived equation. Secondly, we show the approximated curve for computing the variance for effectively. Thirdly, we show the difference between highly sensitive test with proposed parameter and the test with the existing value. 
-% %
-% \par
-% In Section \ref{sec:conclusion}, we conclude the thesis.
-%
-%Notation
-%explain the notation extensively used in the thesis
-% \par
-% Finally, we give some notations that are extensively used throughout the thesis. 
-% Let $\mathbb{R}$ be the set of all real numbers and $\mathbb{N}$ be the set of all natural numbers. 
-% We only consider a binary sequence unless specified and let $x^n = x_1,x_2,\dots,x_n$ be a binary sequence of length $n$, and each element $x_i$ is considered to be a random variable whose value is $0$ or $1$. Let $B$ be a set $\{0,1\}$. 
-% % and let $B$ be the set $\{0,1\}$.
-% %
-% % Let $x^n = x_1,x_2,\dots,x_n$ be a binary sequence of length $n$, and each bit $x_i \in B$ is considered as a random variable.
-%  % that is denoted by $x^n=x_1,x_2,\dots,x_n$ where each element $x_i\in\{0,1\}$ is considered as a random variable. Let $B$ be a set $\{0,1\}$. 
-% %
-% We consider some kinds of information source. A binary symmetric source (BSS) is an information source that generates a binary sequence whose property is statistically independent and identically distributed. Let $R^n$ be a binary sequence of length $n$ generated by BSS. Note that a sequence $R^n$ is regarded as a truly random sequence. A binary memoryless source ($\mathrm{BMS}_{p}$) is an information source that generates a binary sequence whose probability of taking ``$1$'' in a sequence with $p$ and ``$0$'' with $1-p$. Let $U_{\mathrm{BMS}_p}^n$ be a binary sequence of length $n$ generated by $\mathrm{BMS}_{p}$. Note that a sequence generated by $\mathrm{BMS}_{1/2}$ is equivalent to a sequence generated by BSS. An ergodic statistical source $S$ is an information source that generates a binary sequence whose property is ergodic and stationary. Let $U_s^n$ be a binary sequence of length $n$ generated by $S$.
-
-
-% Let $R^n$ be a binary sequence of length $n$ generated by a binary symmetric source (BSS). 
-% Each bit of a sequence $R^n$ is statistically independent and identically distributed, and it is regarded as a truly random sequence. Let $U_{\mathrm{BMS}_p}^n$ be a binary sequence of length $n$ generated by a binary memoryless source ($\mathrm{BMS}_p$) which generates ``$1$'' with probability $p$ and ``$0$'' with probability $1-p$. If $p=\frac{1}{2}$, then the source $\mathrm{BMS}_{1/2}$ is equivalent to a BSS. Let $U_s^n$ be a binary sequence of length $n$ generated by an ergodic stationary source $S$. 
-%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 \newpage
 \section{Universal statistical test}\label{sec:universal}
 %The purpose of the test is to detect whether or not the sequence can be significantly compressed without loss of information. A compressible sequence is considered to be non­ random.
@@ -322,47 +118,20 @@ In this section, we introduce ``Maurer's universal statistical test'' \cite{maur
 %
 \input{section_maurer.tex}
 %-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 \newpage
 \section{Distribution}\label{sec:distribution}
-%情報源BMS_qから生成された二値系列に対して，A_nの分布（周辺分布と同時分布）を導出することが目的
-%
 In this section, we consider the distribution of $A_n(\hat{x}^n)$, where $\hat{x}^n$ is an $n$-bit random variable. For each $i$, we have
-% It is necessary to derive the distribution of $A_n(\hat{x}^n)$, where $\hat{x}^n$ is a $n$-bit random variable. For each $i$, we have
 \begin{align}
   \mathrm{Pr}[(\hat{x}^n)_i = 1] = \hat{q},
 \end{align}
 where $(\hat{x}^n)_i$ is the $i$-th bit of $\hat{x}^n$. Each bit $(\hat{x}^n)_i$ is independent from other bits.
-%
-% The distribution of $A_n(\hat{x}^n)$ is necessary to derive the distribution of $f_C()(\hat{x}^n)_i$ under the null hypothesis of Highly sensitive test.
-
-% We derive the distribution of $f_C(\hat{x}^N)$ under the null hypothesis of Highly sensitive test. 
 For simplicity, we write $A_n(\hat{x}^n)$ as $A_n$ unless specified.
 In the following, we consider an assumption $Q\to\infty$, and due to the situation, the index of $A_n$ should be replaced as illustrated in Figure \ref{fig:replace}. Then, a sequence of $\{A_k\}_{k=1}^{K}$ follows a stationary ergodic process, that is, the joint distribution of $\{A_k\}_{k=n}^{n+m}$ only depends on $m$.  
-%
-% It is necessary to derive the distribution of $f_C(\hat{x}^n)$, where $\hat{x}^n$ denotes a binary sequence of length $n$ that follows a uniform distribution on $\{0,1\}^n$ taking each bit to be ``$1$'' with probability $\hat{q}$ independently. In order to derive a variance of the reference distribution under the null hypothesis $\mathcal{H}_0$, the distribution of $A_n(\hat{x}^n)$ is necessary to derive the variance. In the following, we consider an admissible assumption $Q \to \infty$. 
-%
-% For simplicity, we write $A_n(\hat{x}^n)$ as $A_n$ unless specified.
-%
 In this section, we derive a marginal distribution of $A_n$ and a joint distribution of $(A_n,A_{n+k})$ necessary for calculating the variance of the reference distribution of the highly sensitive test.
-%
-% In the following, we consider a biased binary sequence generated by a binary memoryless source $\mathrm{BMS}_q$, that is, the probability $\mathrm{Pr}[X=1]=q$ holds.
-% In this section, we derive the distribution in order to derive the variance of the test statistic value for highly sensitive test. In the following, we consider a binary sequence $U_{\mathrm{BMS}_q}^n$ generated by a binary memoryless sourse $\mathrm{BMS}_q$, that is, the relation $\mathrm{Pr}[X=1]=q$ holds. 
-% %
-% In this section, we derive the marginal distribution of $A_n$ and joint distribution $(A_n,\,A_{n+k})$.
-% %
-% In the following, $A_n$ stands for $A_n(U_{\mathrm{BMS}_p}^n)$ unless specified.
-% %
-% Assuming $Q \to \infty$ under null hypothesis, the sequence $\{A_k\}_{k=1}^{K}$ is stationary ergodic, that is, for all $m$ and $n$, the joint distribution of $\{A_k\}_{k=n}^{n+m}$ is only dependent on $m$.
-% In this section, we derive the marginal distribution of $A_n$ and joint distribution $(A_n,\,A_{n+k})$ necessary for calculating the variance of the reference distribution of Highly sensitive universal statistical test under null hypothesis. 
 %-----------------------------------------------------------------------------------------------%
 \begin{figure}[b]
 \centering
 \begin{tikzpicture}
-% \draw (-1.5,0)--(-1.0,0);
-% \draw (-1.5,1)--(-1.0,1);
-% \draw node at (-1.5,1.0)[above] {$n$:};
 \draw (-1.0,0) rectangle (0,1);
 \draw node at (-0.5,0.2) [above] {$A_1$};
 \draw (0,0) rectangle (1,1);
@@ -371,11 +140,8 @@ In this section, we derive a marginal distribution of $A_n$ and a joint distribu
 \draw node at (1.5,0.2) [above] {$A_3$};
 \draw (2,0) rectangle (3,1);
 \draw node at (2.5,0.2) [above] {$A_4$};
-% \draw (3,0) rectangle (4,1);
-% \draw (4,0) rectangle (5,1);
 \draw (3,0)--(3.5,0);
 \draw (3,1)--(3.5,1);
-% \draw (5,0) rectangle (6,1);
 \draw[loosely dotted, very thick] (3.75,0.5)--(4.25,0.5);
 \draw (4.5,0)--(5.0,0);
 \draw (4.5,1)--(5.0,1);
@@ -393,9 +159,6 @@ In this section, we derive a marginal distribution of $A_n$ and a joint distribu
 %
 \draw[->] (4.0, -0.5) -- (4.0, -1.0);
 %
-% \draw (-1.5,-3.0)--(-1.0,-3.0);
-% \draw (-1.5,-2.0)--(-1.0,-2.0);
-% \draw node at (-1.5,-2.0)[above] {$n$:};
 \draw (-1.0,-2.5) rectangle (0,-1.5);
 \draw node at (-0.5,-2.3) [above] {$A_{1-Q}$};
 \draw (0,-2.5) rectangle (1,-1.5);
@@ -404,7 +167,6 @@ In this section, we derive a marginal distribution of $A_n$ and a joint distribu
 \draw node at (1.5,-2.3) [above] {$A_{3-Q}$};
 \draw (2,-2.5) rectangle (3,-1.5);
 \draw node at (2.5,-2.3) [above] {$A_{4-Q}$};
-% \draw (3,-3.0) rectangle (4,-2.0);
 \draw (3,-2.5)--(3.5,-2.5);
 \draw (3,-1.5)--(3.5,-1.5);
 \draw[loosely dotted, very thick] (3.75,-2.0)--(4.25,-2.0);
@@ -433,7 +195,6 @@ We consider the event of $\left< A_n=i \right>$ for $i\geq 1$. The event occurs 
 \begin{align}
   \mathcal{M} = \left< b_{n-i} = b_{n}, b_{n-i+1} \neq b_{n} , \dots, b_{n-1} \neq b_{n}  \right>,
 \end{align}
-% where $b_k = b_k(\hat{x}^n)$. 
 where $b_k$ is the $k$-th block of a sequence $\hat{x}^n$.
 Then, we can derive the probability of occurring $\left< A_n = i \right>$ under the assumption that the blocks are statistically independent and identically distributed as
 \begin{align}
@@ -442,17 +203,13 @@ Then, we can derive the probability of occurring $\left< A_n = i \right>$ under 
 \end{align}
 where $\ell(b)$ denotes the number of ``$1$'' included in the block $b \in \{0,1\}^L$. We also have
 \begin{align}
-  % \mathrm{Pr}[\mathcal{M} \mid \ell(b_n) = r] &= \mathcal{Q}_r \times ( 1 - \mathcal{Q}_r )^{i-1},\label{eq:probability_M_mid} \\
-  % \mathrm{Pr} [\ell(b_n) = r] &= \binom{L}{r} \mathcal{Q}_r, \label{eq:probability_l_r}
   \mathrm{Pr}[\mathcal{M} \mid \ell(b_n) = r] &= w_r \times ( 1 - w_r )^{i-1},\label{eq:probability_M_mid} \\
   \mathrm{Pr} [\ell(b_n) = r] &= \binom{L}{r} w_r, \label{eq:probability_l_r}
 \end{align}
-% where $\hat{Q}_r = \hat{q}^r (1-\hat{q})^{L-r}$ and $\binom{L}{r}$ denotes a binomial coefficient. 
 where $w_r = \hat{q}^r (1-\hat{q})^{L-r}$ and $\binom{L}{r} = \frac{L!}{r!(L-r)!}$ is a binomial coefficient. 
 %
 By combining Eqs. (\ref{eq:conditional_probability})--(\ref{eq:probability_l_r}), the following relation is obtained as
 \begin{align}\label{eq:A_n=i}
-  % \mathrm{Pr}[A_n=i] = \sum_{r=0}^{L} \binom{L}{r}\mathcal{Q}_r^2 ( 1 - \mathcal{Q}_r )^{i-1}.
   \mathrm{Pr}[A_n=i] = \sum_{r=0}^{L} \binom{L}{r} w_r^2 ( 1 - w_r )^{i-1},
 \end{align} 
 for $i\geq 1$.
@@ -465,7 +222,6 @@ for $i\geq 1$.
 \draw (-1.0,0) rectangle (0,1);
 \draw (0,0) rectangle (1,1);
 \filldraw [draw=black, fill=pink] (1,0) rectangle (2,1) node(A) at (1.5, 1.0) [above] {$b_{n-i}$};
-% \filldraw [draw=black, fill=lightgray] (2,0) rectangle (3,1);
 \filldraw [pattern = north east lines] (2,0) rectangle (3,1);
 \filldraw [pattern = north east lines] (3,0) rectangle (4,1);
 \filldraw [pattern = north east lines] (4,0) rectangle (5,1);
@@ -484,23 +240,17 @@ for $i\geq 1$.
 \end{figure}
 %
 %-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 \subsection{Derivation of joint distribution}\label{subsec:4-2}
 We consider the event $\left< A_n=i,\, A_{n+k}=j \right>$ for $i\geq 1$ and $j\geq 1$. 
 It has been shown in \cite{coron1998accurate} that the following relation holds for a truly random sequence $R^N$
-% Coron and Naccache have proved that the following relation holds in the case of $q=0.5$ \cite{coron1998accurate}
 %
 \begin{align}\begin{split}
   &\mathrm{Pr}[A_n(R^N)=i,\, A_{n+k}(R^N)=j] \\
    &=\left\{ \begin{array}{ll}
     2^{-2L}(1-2^{-L})^{i+j-2} & (1 \leq j \leq k-1) \\
     2^{-2L}(1-2^{-L})^{i+k-2} & (j=k) \\
-    % 2^{-2L}(1-2^{-L})^{i+j-2} & (1 \leq j \leq k) \\
-    % 2^{-2L}(1-2^{-L})^{i+k-2} \left( 1 - \frac{1}{2^L-1} \right)^{j-k-1} & (k+1 \leq j \leq k+i-1) \\
     2^{-2L}(1-2^{-L})^{i-j+2k-1} \left( 1 - 2^{-L+1} \right)^{j-k-1} & (k+1 \leq j \leq k+i-1) \\
     0 & (j=k+i) \\
-    % 2^{-2L}(1-2^{-L})^{j-2} \left( 1 - \frac{1}{2^L-1} \right)^{i-1} & (j \geq k+i+1) 
     2^{-2L}(1-2^{-L})^{-i+j-1} \left( 1 - 2^{-L+1} \right)^{i-1} & (j \geq k+i+1) 
   \end{array} \right..
 \end{split}\end{align}
@@ -513,8 +263,6 @@ When $1 \leq j \leq k-1$, the events $\left< A_n=i \right>$ and $\left< A_{n+k}=
 \begin{align}
 \begin{split}
   \label{eq:joint1}
-  % \mathrm{Pr}[A_n=i, A_{n+k}=j] =& \mathrm{Pr}[A_n=i] \times \mathrm{Pr}[A_{n+k}=j]\\
-  % =&\left( \sum_{r=0}^{L} \binom{L}{r}\mathcal{Q}_r^2 (1-\mathcal{Q}_r)^{i-1} \right) \times \left( \sum_{r=0}^{L} \binom{L}{r}\mathcal{Q}_r^2 (1-\mathcal{Q}_r)^{j-1} \right).
   \mathrm{Pr}[A_n=i, A_{n+k}=j] =& \mathrm{Pr}[A_n=i] \times \mathrm{Pr}[A_{n+k}=j]\\
   =&\left( \sum_{r=0}^{L} \binom{L}{r}w_r^2 (1-w_r)^{i-1} \right) \times \left( \sum_{r=0}^{L} \binom{L}{r}w_r^2 (1-w_r)^{j-1} \right).
   \end{split}
@@ -531,7 +279,6 @@ In the above relations, the second equality is obtained from Eq. (\ref{eq:A_n=i}
     \filldraw [pattern = north east lines] (0.6*3, 0) rectangle (0.6*4, 0.6);
     \filldraw [pattern = north east lines] (0.6*4, 0) rectangle (0.6*5, 0.6);
     \filldraw [draw=black, fill=pink] (0.6*5, 0) rectangle (0.6*6, 0.6) node (AA) at (3.3, 0.6) [above] {$b_{n+k-j}$};
-    % \filldraw [draw=black, fill=white] (0.6*5, 0) rectangle (0.6*6, 0.6);
     \filldraw [draw=black, fill=white] (0.6*6, 0) rectangle (0.6*7, 0.6);
     \filldraw [draw=black, fill=white] (0.6*7, 0) rectangle (0.6*8, 0.6);
     \filldraw [draw=black, fill=yellow!60] (0.6*8, 0) rectangle (0.6*9, 0.6) node (B) at (5.1, 0.6) [above]{$b_n$};
@@ -551,8 +298,6 @@ In the above relations, the second equality is obtained from Eq. (\ref{eq:A_n=i}
   \caption{An example of the arrangement of blocks in the case of $1\leq j \leq k-1$}
   \label{fig:case1}
 \end{figure}
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \subsubsection{Case of $j=k$}
 For every $b \in B^{L}$, we consider the event $e_2(b)=\left< A_n=i ,\, A_{n+k}=j,\,b_n=b\right>$ for $j=k$. 
@@ -577,15 +322,6 @@ We define $\mathcal{E}_2$ as the event of occurring $\left< A_n=i ,\, A_{n+k}=j\
   \mathcal{E}_2 = \bigvee_{b\in B^L} e_2(b).
 \end{align}
 %
-% Considering each block is statistically independent and uniformly distributed, we obtain the following relations
-%  \begin{align}\label{eq:probability_e_2}
-%  \begin{split}
-%   \mathrm{Pr} \left[ e_2(b) \right] 
-%   % &= \left\{ q^r(1-q)^{L-r} \right\}^3 \times \left\{1 - q^r(1-q)^{L-r}\right\}^{i+k-2}\\
-%   % = \mathcal{Q}_{r}^3 \times (1-\mathcal{Q}_{r})^{i+k-2} .
-%   = w_r^3 \times (1-w_{r})^{i+k-2}.
-% \end{split}
-% \end{align}
 Therefore, the joint distribution is derived as follows:
 \begin{align}
 \begin{split}\label{eq:joint_dist_2}
@@ -596,15 +332,11 @@ Therefore, the joint distribution is derived as follows:
   &= \sum_{b\in B_0^L \cup \dots \cup B_L^L} \mathrm{Pr} [e_2(b)] \\
   &= \sum_{r=0}^{L} \sum_{b\in B_{r}^L} \mathrm{Pr} \left[ e_2(b) \right] \\
   &= \sum_{r=0}^{L} \left(\sharp B_{r}^L \right) \mathrm{Pr} \left[ e_2(b) \right] \\
-  % &= \sum_{r=0}^{L} \dbinom{L}{r} \mathrm{Pr} \left[ e_2(b) \right] \\
-  % &= \sum_{r=0}^{L} \dbinom{L}{r} \mathcal{Q}_{r}^3 (1-\mathcal{Q}_{r})^{i+k-2}
   &= \sum_{r=0}^{L} \dbinom{L}{r} w_{r}^3 (1-w_{r})^{i+k-2},
 \end{split}
 \end{align}
 where $B_r^L := \{ b\in B^L \mid \ell(b)=r \}$ and $\sharp \mathcal{S}$ be the number of elements included in a finite set $\mathcal{S}$.
-% In the course of deriving Eq. (\ref{eq:joint_dist_2}), the second equality is followed by Eq. (\ref{eq:E_2}). The fourth equality holds since we can divide the set $B^L$ into $B_0^L \cup \dots \cup B_L^L$. 
 The sixth equality in Eq. (\ref{eq:joint_dist_2}) has been obtained with the fact that $\mathrm{Pr}[e_2(b)]$ depends only on $\ell (b)$.
-% The last equality has been obtained from Eq. (\ref{eq:probability_e_2}).
 %
 \begin{figure}
 \centering
@@ -636,54 +368,11 @@ The sixth equality in Eq. (\ref{eq:joint_dist_2}) has been obtained with the fac
   \caption{An example of the arrangement of blocks in the case of $j = k$}
   \label{fig:case2}
 \end{figure}
-%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \subsubsection{Case of $k+1 \leq j \leq k+i-1$}%case3
-% For every $b^{(1)},\, b^{(2)} \in B^L$, we consider the event that $\left< A_n=i ,\, A_{n+k}=j,\,b_n=b^{(1)},\,b_{n+k}=b^{(2)}\right>$ for $k+1 \leq j \leq k+i-1$. 
-% An example for the arrangement of blocks is illustrated in Figure \ref{fig:case3}.
-% Let $e_3(b,b^\prime)$ be such an event which is written as
-% % Then, $e_3(b,b^\prime)$ is written as
-% \begin{align}
-% \begin{split}
-%   \label{eq:e_3}
-%   e_3 \left(b^{(1)},b^{(2)}\right) = 
-%   &\left< b_{n-i} = b^{(1)} , b_{n} = b^{(1)} , b_{n+k-j} = b^{(2)} , b_{n+k} = b^{(2)} \right> \\
-%   &\land \left< b_{n-i+1} \neq b^{(1)}, \dots, b_{n+k-j-1} \neq b^{(1)} \right> \\
-%   &\land \left< b_{n+k-j+1} \neq b^{(1)}, \dots, b_{n-1} \neq b^{(1)} \right> \\
-%   &\land \left< b_{n+k-j+1} \neq b^{(2)}, \dots, b_{n-1} \neq b^{(2)} \right> \\
-%   &\land \left< b_{n+1} \neq b^{(2)} , \dots, b_{n+k-1} \neq b^{(2)} \right>
-% \end{split}
-% \end{align}
-% Since the blocks are statistically independent and uniformly distributed, we have
-% \begin{align}
-% \begin{split}
-%   \label{eq:probability_e3}
-%   % \mathrm{Pr} \left[ e_3(b,b^\prime) \right] 
-%   % =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
-%   % \times (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
-%   % \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
-%   % \times (1-\mathcal{Q}_{r_2})^{k-1}.
-%   \mathrm{Pr} \left[ e_3 \left(b^{(1)},b^{(2)}\right) \right] 
-%   % =& \mathcal{Q}_{r_1}^2 \mathcal{Q}_{r_2}^2 
-%   % (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
-%   % (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
-%   % (1-\mathcal{Q}_{r_2})^{k-1}.
-%   =& w_{r_1}^2 w_{r_2}^2 
-%   (1-w_{r_1})^{i-j+k-1} 
-%   (1-w_{r_1}-w_{r_2})^{j-k-1}
-%   (1-w_{r_2})^{k-1}.
-% \end{split}
-% \end{align}
-% We define $\mathcal{E}_3$ as the event occurring $\left< A_n=i ,\, A_{n+k}=j\right>$ in the case of $k+1 \leq j \leq k+i-1$, $\mathcal{E}_3$ can be written by using $e_3(b,b^\prime)$ as
-% \begin{align}\label{eq:E_3}
-%   \mathcal{E}_3 = \bigvee_{b^{(1)} \in B^L} \bigvee_{b^{(2)} \in B^L \setminus \{b^{(1)}\}} e_3 \left(b^{(1)},b^{(2)}\right).
-% \end{align}
 For every $b,\, b^\prime \in B^L$, we consider the event $e_3(b,b^\prime) \left< A_n=i ,\, A_{n+k}=j,\,b_n=b,\,b_{n+k}=b^\prime\right>$ for $k+1 \leq j \leq k+i-1$. 
 An example for the arrangement of blocks is illustrated in Figure \ref{fig:case3}.
 The event $e_3(b,b^\prime)$ can be written as
-% Then, $e_3(b,b^\prime)$ is written as
 \begin{align}
 \begin{split}
   \label{eq:e_3}
@@ -699,16 +388,7 @@ Since the blocks are statistically independent and uniformly distributed, we hav
 \begin{align}
 \begin{split}
   \label{eq:probability_e3}
-  % \mathrm{Pr} \left[ e_3(b,b^\prime) \right] 
-  % =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
-  % \times (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
-  % \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
-  % \times (1-\mathcal{Q}_{r_2})^{k-1}.
   \mathrm{Pr} \left[ e_3 \left(b,b^\prime\right) \right] 
-  % =& \mathcal{Q}_{r_1}^2 \mathcal{Q}_{r_2}^2 
-  % (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
-  % (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
-  % (1-\mathcal{Q}_{r_2})^{k-1}.
   =& w_{r_1}^2 w_{r_2}^2 
   (1-w_{r_1})^{i-j+k-1} 
   (1-w_{r_1}-w_{r_2})^{j-k-1}
@@ -719,27 +399,6 @@ We define $\mathcal{E}_3$ as the event $\left< A_n=i ,\, A_{n+k}=j \right>$ in t
 \begin{align}\label{eq:E_3}
   \mathcal{E}_3 = \bigvee_{b \in B^L} \bigvee_{b^\prime \in B^L \setminus \{b\}} e_3 \left(b,b^\prime\right).
 \end{align}
-%
-% Considering each block is statistically independent and uniformly distributed, the following relation is obtained
-% \begin{align}
-% \begin{split}
-%   \label{eq:probability_e3}
-%   % \mathrm{Pr} \left[ e_3(b,b^\prime) \right] 
-%   % =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
-%   % \times (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
-%   % \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
-%   % \times (1-\mathcal{Q}_{r_2})^{k-1}.
-%   \mathrm{Pr} \left[ e_3(b,b^\prime) \right] 
-%   % =& \mathcal{Q}_{r_1}^2 \mathcal{Q}_{r_2}^2 
-%   % (1-\mathcal{Q}_{r_1})^{i-j+k-1} 
-%   % (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{j-k-1}
-%   % (1-\mathcal{Q}_{r_2})^{k-1}.
-%   =& w_{r_1}^2 w_{r_2}^2 
-%   (1-w_{r_1})^{i-j+k-1} 
-%   (1-w_{r_1}-w_{r_2})^{j-k-1}
-%   (1-w_{r_2})^{k-1}.
-% \end{split}
-% \end{align}
 Therefore, we can derive the joint distribution as
 \begin{align}\label{eq:joint_dist_3}
 \begin{split}
@@ -762,8 +421,6 @@ Therefore, we can derive the joint distribution as
 \end{split}
 \end{align}
 where $\mathrm{Pr} \left[e_3(b,b^\prime) \right]$ is given in Eq. (\ref{eq:probability_e3}).
-% In the course of deriving Eq. (\ref{eq:joint_dist_3}), the second equality is followed by Eq. (\ref{eq:E_3}). 
-% The fourth equality holds since we can divide the set $B^L$ into $B_0^L \cup \dots \cup B_L^L$. 
 The last equality in Eq. (\ref{eq:joint_dist_3}) holds since $\mathrm{Pr} [A_n=i ,\, A_{n+k}=j,\,b_n=b,\,b_{n+k}=b^\prime]$ depends only on $\ell (b)$ and $\ell (b^\prime)$.
 %
 \begin{figure}
@@ -796,9 +453,6 @@ The last equality in Eq. (\ref{eq:joint_dist_3}) holds since $\mathrm{Pr} [A_n=i
   \caption{An example of the arrangement of blocks in the case of $k+1 \leq j \leq k+i-1$}
   \label{fig:case3}
 \end{figure}
-%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \subsubsection{Case of $j=k+i$}%case4
 When $j=k+i$, the events $\left< A_n=i \right>$ and $\left< A_{n+k}=j \right>$ do not occur coincidentally as illustrated in Figure \ref{fig:case4}. Thus, the joint distribution is obtained as
@@ -818,7 +472,6 @@ When $j=k+i$, the events $\left< A_n=i \right>$ and $\left< A_{n+k}=j \right>$ d
   \filldraw [pattern = north east lines] (0.6*3, 0) rectangle (0.6*4, 0.6);
   \filldraw [pattern = north east lines] (0.6*4, 0) rectangle (0.6*5, 0.6);
   \filldraw [pattern = north east lines] (0.6*5, 0) rectangle (0.6*6, 0.6);
-  % \filldraw [draw=black, fill=pink] (0.6*6, 0) rectangle (0.6*7, 0.6) node (B) at (3.9, 0.6)[above]{$b_{n}$};
   \filldraw [pattern = north east lines] (0.6*6, 0) rectangle (0.6*7, 0.6);
   \filldraw [pattern = north east lines] (0.6*7, 0) rectangle (0.6*8, 0.6);
   \filldraw [draw=black, fill=pink] (0.6*8, 0) rectangle (0.6*9, 0.6) node (B) at (5.1,0.6)[above]{$b_{n}$};
@@ -839,7 +492,6 @@ When $j=k+i$, the events $\left< A_n=i \right>$ and $\left< A_{n+k}=j \right>$ d
   \caption{An example of the arrangement of blocks in the case of $j=k+i$}
   \label{fig:case4}
 \end{figure}
-%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
@@ -860,16 +512,7 @@ Since the blocks are statistically independent and uniformly distributed, we hav
 \begin{align}
 \begin{split}
   \label{eq:probability_e5}
-  % \mathrm{Pr} \left[ e_5(b_1,b_2) \right] 
-  % =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
-  % \times (1-\mathcal{Q}_{r_1})^{-i+j-k-1} 
-  % \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{i-1}
-  % \times (1-\mathcal{Q}_{r_2})^{k-1}. 
   \mathrm{Pr} \left[ e_5(b_1,b_2) \right] 
-  % =& \mathcal{Q}_{r_1}^2  \mathcal{Q}_{r_2}^2 
-  % (1-\mathcal{Q}_{r_1})^{-i+j-k-1} 
-  % (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{i-1}
-  % (1-\mathcal{Q}_{r_2})^{k-1}. 
   =& w_{r_1}^2  w_{r_2}^2 
   (1-w_{r_1})^{-i+j-k-1} 
   (1-w_{r_1}-w_{r_2})^{i-1}
@@ -881,26 +524,6 @@ We define $\mathcal{E}_5$ as the event $\left< A_n=i ,\, A_{n+k}=j\right>$ for $
   \mathcal{E}_5 = \bigvee_{b \in B^L} \bigvee_{b^\prime \in B^L \setminus \{b_1\}} e_5(b,b^\prime).
 \end{align}
 %
-% Considering each block is statistically independent and uniformly distributed, the following relation is obtained
-% \begin{align}
-% \begin{split}
-%   \label{eq:probability_e5}
-%   % \mathrm{Pr} \left[ e_5(b_1,b_2) \right] 
-%   % =& \mathcal{Q}_{r_1}^2  \times \mathcal{Q}_{r_2}^2 
-%   % \times (1-\mathcal{Q}_{r_1})^{-i+j-k-1} 
-%   % \times (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{i-1}
-%   % \times (1-\mathcal{Q}_{r_2})^{k-1}. 
-%   \mathrm{Pr} \left[ e_5(b_1,b_2) \right] 
-%   % =& \mathcal{Q}_{r_1}^2  \mathcal{Q}_{r_2}^2 
-%   % (1-\mathcal{Q}_{r_1})^{-i+j-k-1} 
-%   % (1-\mathcal{Q}_{r_1}-\mathcal{Q}_{r_2})^{i-1}
-%   % (1-\mathcal{Q}_{r_2})^{k-1}. 
-%   =& w_{r_1}^2  w_{r_2}^2 
-%   (1-w_{r_1})^{-i+j-k-1} 
-%   (1-w_{r_1}-w_{r_2})^{i-1}
-%   (1-w_{r_2})^{k-1}. 
-% \end{split}
-% \end{align}
 Therefore, we can derive the joint distribution as
 \begin{align}\label{eq:joint_dist_5}
 \begin{split}
@@ -938,10 +561,8 @@ The above relations have been obtained in the same manner in the case of $k+1 \l
     \filldraw [pattern = crosshatch] (0.6*5, 0) rectangle (0.6*6, 0.6);
     \filldraw [pattern = crosshatch] (0.6*6, 0) rectangle (0.6*7, 0.6);
     \filldraw [pattern = crosshatch] (0.6*7, 0) rectangle (0.6*8, 0.6);
-    % \filldraw [draw=black, fill=pink] (0.6*8, 0) rectangle (0.6*9, 0.6)node (BB) at (5.1,0.6)[above]{$b_n$};
     \filldraw [pattern = crosshatch] (0.6*8, 0) rectangle (0.6*9, 0.6);
     \filldraw [pattern = crosshatch] (0.6*9, 0) rectangle (0.6*10, 0.6);
-    % \filldraw [pattern = crosshatch] (0.6*10, 0) rectangle (0.6*11, 0.6);
     \filldraw [draw=black, fill=pink] (0.6*10, 0) rectangle (0.6*11, 0.6) node (BB) at (6.3,0.6)[above]{$b_n$};
     \filldraw [pattern = north east lines] (0.6*11, 0) rectangle (0.6*12, 0.6);
     \filldraw [pattern = north east lines] (0.6*12, 0) rectangle (0.6*13, 0.6);
@@ -957,22 +578,13 @@ The above relations have been obtained in the same manner in the case of $k+1 \l
   \caption{An example of the arrangement of blocks in the case of $j \geq k+i+1$}
   \label{fig:case5}
 \end{figure}
-%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \subsubsection{Summary of the results}
 %これまでのサブセクションで系列Aに関する周辺分布と同時分布について導出してきた．周辺分布は，An=iである事象を考えることによって導出され，式（）で与えられる，一方，同時分布はブロックの配置によって5つの場合に分けて解析する必要があった．ここに，結果を再掲する．
 In the previous subsections, we have derived the marginal distribution of $A_n$ and the joint distribution of $(A_n,A_{n+k})$ under the assumption of $Q\to\infty$. 
-% The marginal distribution was derived by considering the event of $\left< A_n=i \right>$. On the other hand, a separate analysis of five cases was required to derive the joint distribution.
 We give the summary of the result of the joint distribution that we have obtained in subsection \ref{subsec:4-2}.
-% The marginal distribution for $i\geq 1$ is written as follows.
-% \begin{align}
-%   % \mathrm{Pr}[A_n=i] = \sum_{r=0}^{L} \binom{L}{r}\mathcal{Q}_r^2 ( 1 - \mathcal{Q}_r )^{i-1}.
-%   \mathrm{Pr}[A_n=i] = \sum_{r=0}^{L} \binom{L}{r} w_r^2 ( 1 - w_r )^{i-1},
-% \end{align}
-% where $w_r = \hat{q}^r (1-\hat{q})^{L-r}$.
-% \par
 The joint distribution of $(A_n,A_{n+k})$ is written as follows:
 \begin{align}\begin{split}\label{eq:joint_distribution}
   &\mathrm{Pr}[A_n=i,\,A_{n+k}=j] \\
@@ -995,7 +607,6 @@ The joint distribution of $(A_n,A_{n+k})$ is written as follows:
   \displaystyle+ \sum_{r_1=0}^{L}\sum_{r_2\in\{r_1\}} \dbinom{L}{r_1} \left\{ \dbinom{L}{r_1} -1 \right\} \mathrm{Pr} \left[e_5(b,b^\prime) \right] & (j \geq k+i+1)
   \end{array}\right.,
 \end{split}\end{align}
-% $w_r=\hat{q}^r(1-\hat{q})^{L-r}$
 where $w_r=\hat{q}^r(1-\hat{q})^{L-r}$. In Eq.(\ref{eq:joint_distribution}), $\mathrm{Pr} \left[e_3(b,b^\prime) \right]$ and $\mathrm{Pr} \left[e_5(b,b^\prime) \right]$ are given in Eqs. (\ref{eq:probability_e3}) and (\ref{eq:probability_e5}), respectively.
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
@@ -1023,8 +634,6 @@ In this section, we provide a theoretical deviation for the variance of referenc
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 \subsection{Theoretical derivation of the variance}
 The variance of a random variable $X$ is defined by
 \begin{align}
@@ -1043,33 +652,27 @@ where $\mathrm{Cov}[X,Y]$ is the covariance defined by
   \mathrm{Cov}[X, Y] = \mathbb{E}[XY] - \mathbb{E}[X] \times \mathbb{E}[Y].
 \end{align}
 Let $\sigma_{C,\hat{q}}(K)^2$ be the variance for the reference distribution of the highly sensitive test with $\hat{q}$.
-% From Eq. (\ref{eq:sum_var}), the variance of the reference distribution defined in Eq. (\ref{eq:fC}) is obtained as
 Using Eq. (\ref{eq:sum_var}), $\sigma_{C,\hat{q}}(K)^2$ is written as
 \begin{align}
 \begin{split}\label{eq:var_fC}
-  % \sigma_C(\hat{q})^2 =& \mathrm{Var} [f_C(\hat{x}^n)] \\
   \sigma_{C,\hat{q}}(K)^2 =& \mathrm{Var} [f_C(\hat{x}^n)] \\
   =& \mathrm{Var} \left[ \frac{1}{K} \sum_{n=1}^{K} g(A_n) \right] \\
   =& \frac{1}{K^2} \left( \sum_{n=1}^{K} \mathrm{Var} [g(A_n)] + 2 \sum_{1 \leq i < j \leq K} \mathrm{Cov} [g(A_{i}), g(A_{j})] \right) \\
   =& \frac{1}{K^2} \Biggl( K \times \mathrm{Var} [g(A_n)] + 2\sum_{k=1}^{K-1}(K-k) \times \mathrm{Cov}[g(A_n),g(A_{n+k})] \Biggr).
 \end{split}
 \end{align}
-% In the course of the derivation of the above relations, the third equality has been obtained by Eq. (\ref{eq:sum_var}).
 The last equality in Eq. (\ref{eq:var_fC}) has been obtained with the fact that the sequence of $\{A_k\}_{k=1}^{K}$ is stationary ergodic under the assumption $Q\to\infty$.
-% by the assumption of ergodic stationary, that is, $\mathrm{Var} [g(A_n)]$ is independent of $n$ and $\mathrm{Cov}[g(A_n),g(A_{n+k})]$ is only depend on $k=j-i$.
 \par
 In the next place, we derive $\mathrm{Var} [g(A_n)]$ and $\mathrm{Cov}[g(A_n),g(A_{n+k})]$ in Eq. (\ref{eq:var_fC}). First, $\mathrm{Var} [g(A_n)]$ can be written as
 \begin{align}\label{eq:var_g_def}
   \mathrm{Var}[g(A_n)] 
   &= \mathbb{E}[\{g(A_n)\}^2] - (\mathbb{E}[g(A_n)])^2 
-  % &= \sum_{i=1}^{\infty} \{g(i)\}^2 \mathrm{Pr}[A_n=i] - \{L \times H(\hat{q})\}^2
 \end{align}
 by Eq. (\ref{eq:var_def}). From the definition of expected value, the first term of the right hand side of Eq. (\ref{eq:var_g_def}) can be calculated as
 \begin{align}\begin{split}\label{eq:expectation_g_An_square}
   \mathbb{E}[\{g(A_n)\}^2] &= \sum_{i=1}^{\infty} \{g(i)\}^2 \mathrm{Pr}[A_n=i]\\
   &=\sum_{i=2}^{\infty} \left[\left\{ (\log_2 \mathrm{e}) \sum_{k=1}^{i-1} \frac{1}{k} \right\}^2 \times \sum_{r=0}^{L} \binom{L}{r} w_r^2 (1-w_r)^{i-1}\right]. 
 \end{split}\end{align}
-% where $\mathrm{Pr}[A_n=i]$ is given in Eq. (\ref{eq:A_n=i}). 
 The second term of the right hand side of Eq. (\ref{eq:var_g_def}) is equal to $\{L \times H(\hat{q})\}^2$ from Eq. (\ref{eq:E_BMS}).
 %
 Secondly, $\mathrm{Cov}[g(A_n),g(A_{n+k})]$ in Eq. (\ref{eq:var_fC}) can be calculated as
@@ -1086,44 +689,26 @@ The first equality in Eq. (\ref{eq:covariance_g_g}) has been obtained from Eq. (
 By combining Eqs. (\ref{eq:var_fC})--(\ref{eq:covariance_g_g}), $\sigma_{C,q}(K)^2$ is rewritten as
 \begin{align}\begin{split}\label{eq:sigma_C^2}
   \sigma_{C,\hat{q}}(K)^2  
-  % =& \frac{1}{K} \left( \sum_{i=1}^{\infty} \{g(i)\}^2 \mathrm{Pr}[A_n=i] - \{L \times H(\hat{q})\}^2 \right)\\
   =& \frac{1}{K} \left( \sum_{i=2}^{\infty} \left[\left\{ (\log_2 \mathrm{e}) \sum_{k=1}^{i-1} \frac{1}{k} \right\}^2 \times \sum_{r=0}^{L} \binom{L}{r} w_r^2 (1-w_r)^{i-1}\right] - \{L \times H(\hat{q})\}^2 \right)\\
   &+ \frac{2}{K^2}\sum_{k=1}^{K-1}(K-k) \left\{\sum_{i=1}^{\infty}\sum_{j=1}^{\infty}g(i)g(j)\mathrm{Pr}[A_n=i, \, A_{n+k}=j] - \left\{L \times H(\hat{q})\right\}^2\right\}.
 \end{split}\end{align}
-% Note that it is necessary to calculate an infinite double sum of $i$ and $j$ to obtain $\sigma_{C,q}(K)^2$ by Eq. (\ref{eq:sigma_C^2})\footnote{%
-% Since it is unable to calculate an infinite sum by computer, it is necessary to cut off the infinite sum at some large number.
-% }. However, the computational cost for calculating a double sum is quite high. To overcome the obstacle, we have analyze the covariance given in Eq. (\ref{eq:covariance_g_g}) more in details in Appendix \ref{appendix:1}. 
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 \clearpage
 \subsection{Numerical results}\label{subsec:numerical_exp_L4}
 In this subsection, we show some results of experiments. 
-% In the following, we cut off an infinite double summation when we compute $\sigma_{C,\hat{q}} (K)^2$ by Eq. (\ref{eq:sigma_C^2}) since it is unable to compute an infinite summation by computer. The computational cost for computing double summation is so high that we explore the covariance given in (\ref{eq:covariance_g_g}) in Appendix \ref{appendix:B}.
 In the following, we approximate the infinite double sum as finite sum when we compute $\sigma_{C,\hat{q}} (K)^2$ by Eq. (\ref{eq:sigma_C^2}) since it is unable to compute an infinite summation by computer. Even if computing infinite sum is inevitable, we explore the covariance given in (\ref{eq:covariance_g_g}) to calculate the value more efficiently by computational experiment in Appendix \ref{appendix:B}.
 %
-% \subsubsection{Case of $L=4$}
 \subsubsection{Experiment 1}
 %
-% In this subsection, we confirm that $\sigma_{C,\hat{q}} (K)^2$ can be computed accurately by Eq. (\ref{eq:sigma_C^2}). In the numerical simulation, we set $L=4,\, Q=10 \times 2^L$ as parameters and cut off an infinite double sum of Eq. (\ref{eq:sigma_C^2}) at $10^6$. We use Mersenne Twister (MT) \cite{matsumoto1998mersenne} as pseudo random number generator for flipping bits by Eq. (\ref{eq:convert}).
-%
 We confirm that $\sigma_{C,\hat{q}} (K)^2$ can be computed accurately by Eq. (\ref{eq:sigma_C^2}) when $L=4$. In the numerical computation, we set $Q=10 \times 2^L$.
- % We cut off an infinite double summation in Eq. (\ref{eq:sigma_C^2}) at $10^6$ since it is unable to compute an infinite summation by computer. 
-% We used Mersenne Twister (MT) \cite{matsumoto1998mersenne} as pseudo random number generator for flipping bits by Eq. (\ref{eq:convert}).
-%
 Figure \ref{fig:1} shows the result of computed variance of reference distribution when $\hat{q}=0.33,\, 0.4$ and $0.5$. Note that we set $\hat{q}=0.33$ since it is said to be optimal for detecting the deviation of a binary sequence in \cite{yamamoto2016highly}. As seen in the Figure \ref{fig:1}, the variance decreases by $\mathcal{O}(\frac{1}{K})$. We can express the variance as $\frac{D_K(\hat{q})}{K}$. Table \ref{tab:1} shows the coefficient $D_K(\hat{q})$ when we approximate variance by $\frac{D_K(\hat{q})}{K}$. 
-%3桁目まではいずれも一致していることが確認される．
-% We can confirm that each value of $D_K(\hat{q})$ regarding to $\hat{q}$ matches up to the third digits.
 \par
 In the next place, we show the result of the numerical experiment for computing an unbiased variance of binary sequences generated by a pseudo random generator. The procedure of the experiment is as follows.
-%
-% Figure \ref{fig:2} shows the result of the variance of the reference distribution calculated by the simulation of binary sequences generated by a pseudo random generator. Here, we employed Mersenne Twister (MT) \cite{matsumoto1998mersenne}. The procedure of this numerical experiment is as follows. 
 \begin{enumerate}[Step1:]
   \item Set $L,\,Q,\,K,\,\hat{q},\,M$ and $N$.
   \item Generate $M$ pieces of binary sequences $x^{n,1},\dots x^{n,M}$ by pseudo random number generator, where $x^{n,i}$ for $i=1,2,\dots,M$ is a binary sequence of length $n=L\times(Q+K)$.
-  % where each sequence $x^{n,i}$ is $n = L\times (Q+K)$ bits  by pseudo random number generator.
   \item Convert each binary sequence $x^{n,i}$ into $\hat{x}^{n,i}$ with $\hat{q}$ from Eq. (\ref{eq:convert}) by using pseudo random number generator.
   \item For each converted binary sequence $\hat{x}^{n,i}$, compute the test statistical value $f_i=f_C(\hat{x}^{n,i})$ from Eq. (\ref{eq:fC}).
   \item Compute an unbiased variance defined by
@@ -1137,29 +722,12 @@ In the next place, we show the result of the numerical experiment for computing 
   \end{align}
 \end{enumerate}
 %
-% First, we set parameters as $L=4,\,Q=10\cdot 2^L,\,K=1000\cdot 2^L,\,\hat{q}=0.33$. Secondly, we generate $M$ pieces of binary sequences of $n=L\times(Q+K)$ bits by using MT, and calculate the reference function $f_i = f_C(x^{n,i})$ defined Eq. (\ref{eq:fC}). Thirdly, we calculate the unbiased variance defined as
-% \begin{align}
-%   u^2 = \frac{1}{M-1}\sum_{i=1}^{M}(f_i - \overline{f}),
-% \end{align}
-% where $\overline{f}$ is sample mean defined by
-% \begin{align}
-%   \overline{f} = \frac{1}{M}\sum_{i=1}^{M} f_i.
-% \end{align}
-% Finally, we repeat the procedures above in $N$ times, and calculate the mean value of unbiased variances $u_1^2, u_2^2, \dots, u_N^2$ by
-% \begin{align}
-%   \overline{u}^2 = \frac{1}{N} \sum_{i=1}^{N} u_i^2.
-% \end{align}
-%
 In the numerical simulation, we set $L=4,\,Q=10\times 2^L,\,\hat{q}=0.33,\, M=1000$ and $N=30$. We also set $K$ as $10^3,\,2\times 10^3 ,\, 4\times 10^3,\, 6\times 10^3,\, 8\times 10^3,\, 10\times 10^3,\,12\times 10^3,\,14\times 10^3$ and $16 \times 10^3$. We used Mersenne Twister as the pseudo random number generator in Step2 and Step3.
 Figure \ref{fig:2} shows the result of the experiment, and we can confirm that the simulated unbiased variance coincides with the result obtained by Eq. (\ref{eq:sigma_C^2}) in precisely.
 %
-%
 \begin{figure}[htbp]
   \centering
-    \includegraphics[width=0.8\linewidth]{../figure/fig3.pdf}
-    % \begin{picture}(0,0)
-    % \put(0,0){hogehoge}
-    % \end{picture}
+    \includegraphics[width=0.8\linewidth]{./figure/fig3.pdf}
     \caption{The variance of the reference distribution computed based on Eq. (\ref{eq:sigma_C^2}) with $\hat{q}=0.33,\, 0.4$ and $0.5$ (Copyright(C)2020 IEICE, \cite{hikima2020} Figure 1)}
     \label{fig:1}
 \end{figure}
@@ -1178,12 +746,10 @@ Figure \ref{fig:2} shows the result of the experiment, and we can confirm that t
 %
 \begin{figure}[htbp]
   \centering
-    \includegraphics[width=0.7\linewidth]{../figure/fig4.pdf}
+    \includegraphics[width=0.7\linewidth]{./figure/fig4.pdf}
     \caption{The variance of the reference distribution computed in the experiment. The solid blue line and the broken red line are the variances computed based on Eq. (\ref{eq:sigma_C^2}) with $\hat{q}=0.5$ and $\hat{q}=0.33$, respectively. The block points show the arithmetic mean of the unbiased variance with $\hat{q}=0.33$ using Mersenne Twister. (Copyright(C)2020 IEICE, \cite{hikima2020} Figure 2)}
     \label{fig:2}
 \end{figure}
-%
-%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
@@ -1191,29 +757,19 @@ Figure \ref{fig:2} shows the result of the experiment, and we can confirm that t
 \subsubsection{Experiment 2}\label{subsec:4-3}
 We have seen that the variance of reference distribution of the highly sensitive test can be computed when $L=4$. We consider the case of $L=8$ and $\hat{q}=0.33$ which are recommended in \cite{yamamoto2016highly}. 
 However, the computational cost for $L=8$ is too high to compute directly since the recommendation value for $K$ is $1000\times 2^8 = 256000$.
-% Although the variance for $L=4$ can be computed directly using Eq. (\ref{eq:sigma_C^2}) since the recommendation value for $K$ is only $1000 \times 2^4 = 16000$, the computational cost for computing the variance for $L=8$ is too high, since the recommendation value for $K$ is $1000\times 2^8 = 256000$. 
 To overcome the obstacle, we derive the fitted curve. 
-%計算時間がかかるだけでなく計算の破綻を起こすことが確認された．そこで，得られているデータから近似曲線を求めることを考える．
-% Note that the recommended value of $K$ is $K=1000\cdot 2^8$.
-%
 We approximate the variance of the reference distribution as
-% The variance of reference distribution can be written as
 \begin{align}\label{eq:approx_sigma}
   \sigma_{C,\hat{q}}(K)^2 = \frac{1}{K} \left( a + \frac{b}{K} \right),
 \end{align}
 where $a$ and $b$ are real valued constants. 
-% Let $h(K) = a + \frac{b}{K}$. 
 These constants can be obtained with any two points $(K_1, \sigma_{C,\hat{q}}(K_1)^2)$ and $(K_2, \sigma_{C,\hat{q}}(K_2)^2)$ by
 \begin{align}\begin{split}\label{eq:keisuu_ab}
-  % a &= \frac{1}{K_1-K_2} \left( K_1 h(K_1) - K_2 h(K_2)  \right), \\
-  % b &= \frac{K_1K_2}{K_2-K_1} \left( h(K_1) - h(K_2)  \right).
   a &= \frac{1}{K_1-K_2} \left( K_1^2 \sigma_{C,\hat{q}}(K_1)^2 - K_2^2 \sigma_{C,\hat{q}}(K_2)^2  \right), \\
   b &= \frac{K_1K_2}{K_2-K_1} \left( K_1 \sigma_{C,\hat{q}}(K_1)^2 - K_2 \sigma_{C,\hat{q}}(K_2)^2 \right).
 \end{split}\end{align}
 %
 Table \ref{tab:2} shows the pairs of $(a,b)$ obtained from $(K_1,K_2)=(40000,45000)$ and the standard deviation $\tilde{\sigma}_{C,\hat{q}}(K)$ for $K=1000\times2^L$ obtained from Eq. (\ref{eq:approx_sigma}).
-%
-% We adopt the result of $(K_1,K_2)=(40000,45000)$ and obtain the standard deviation for $K=1000\times 2^8$ as $\sigma_{C,0.33} (1000\times 2^8) = 0.0034886003$.
 %
 Figure \ref{eq:approx_sigma} show the fitted curve.
 Using the fitted curve, we obtained the standard deviation for $K=1000\times 2^8$ as
@@ -1224,10 +780,7 @@ Using the fitted curve, we obtained the standard deviation for $K=1000\times 2^8
 %
 \par
 To confirm the accuracy of Eq. (\ref{eq:proposed_value}), we computed $\sigma_{C,0.33} (1000\times 2^8)$ using MT in 10 times. For each trial, we used $4\times 10^6$ pieces of binary sequences and set $Q=10\times 2^8$.
-% We made an experiment described in Experiment 1 for choosing parameters as $L=8,\, Q=10\times 2^L,\,K=1000\times 2^L,\, \hat{q}=0.33,\, M=4\times 10^{6}$ and $N=10$. 
 Table \ref{tab:2} and Figure \ref{fig:comparison_yamamoto} show the results of this experiment.
-%
-% We can see that the obtained value derived from Eqs. (\ref{eq:approx_sigma}) and (\ref{eq:keisuu_ab}) is closer to the empirical value than the value used in \cite{yamamoto2016highly}.
 These results support that the value represented in Eq. (\ref{eq:proposed_value}) is more accurate than the value in previous study.
 %
 \begin{table}[htb]
@@ -1245,11 +798,10 @@ These results support that the value represented in Eq. (\ref{eq:proposed_value}
 %
 \begin{figure}[htbp]
   \centering
-    \includegraphics[width=0.7\linewidth]{../figure/approx_varf_L8_10000.pdf}
+    \includegraphics[width=0.7\linewidth]{./figure/approx_varf_L8_10000.pdf}
     \caption{The fitted curve}
     \label{fig:fitted}
 \end{figure}
-%
 %
 %-----------------------------------------------------------------------------------------------%
 %
@@ -1275,35 +827,26 @@ These results support that the value represented in Eq. (\ref{eq:proposed_value}
 %
 \begin{figure}[tbp]
   \centering
-  \includegraphics[width=0.7\linewidth]{../figure/unbiased_variance.pdf}
-  % \caption{Plots of values of square root of unbiased variance computed using the Mersenne Twister. The blue broken line is the value given in \cite{yamamoto2016highly}, the black broken line is the value given in the subsection \ref{subsec:4-2}, and the red broken line is the average of square root of unbiased variance.}
+  \includegraphics[width=0.7\linewidth]{./figure/unbiased_variance.pdf}
   \caption{The variance $\sigma_{C,0.33}(1000\times 2^8)$. Each point shows an unbiased variance derived empirically and the red broken line shows the arithmetic mean. The blue broken line shows the value given in \cite{yamamoto2016highly}. The black broken line represented in Eq. (\ref{eq:proposed_value}).}
-  % \caption{The variance of reference distribution for $L=4$ and $\hat{q}=0.33$.}
   \label{fig:comparison_yamamoto}
 \end{figure}
 %-----------------------------------------------------------------------------------------------%
 \clearpage
 \subsubsection{Experiment 3}
-%このセクションでは，得られた参照分布の分散を用いて検定を行なった場合と，先行研究で与えられている数値を使った場合の違いについて考察する．
 We investigated the difference between the value derived in Experiment 2 and the value given in \cite{yamamoto2016highly}. In the follows, we refer to the value represented in Eq. (\ref{eq:proposed_value}) as proposed value and the value given in \cite{yamamoto2016highly} as Yamamoto's value. We used MT \cite{matsumoto1998mersenne} and AES-128 CTR \cite{rijmen2001advanced} as pseudo random number generators. 
 \par
 Each test was performed for $10^5$ sequences of length $n=2068480$-bit. We divided them into $100$ sets of $1000$ sequences. We assigned pass or rejected for each set based on two-level tests, ``proportion test'' and ``uniformity test'', described in subsection \ref{subsec:1-2}.
-% These sequences are associated with pass or rejection assigned for each set based on two-level tests, ``proportion test'' and ``uniformity test'', described in subsection \ref{subsec:1-2}. 
 %
 Recall that the significance level for uniformity test is $0.0001$. 
 Since the significance level for uniformity test is so small that we cannot observe the difference, we executed uniformity test with the significance levels $0.01$ and $0.05$.
-% We executed the tests with several significance levels since significance level is so small that we cannot observe the difference. 
-% We also additionally perform the Proportion test with two-sigma significance as well as three-sigma significance.
 By the same reason, we additionally performed proportion test with $\xi=2$ as well as $\xi=3$.
-% two-sigma significance as well as three-sigma significance.
 \par
 The results of Experiment 2 imply that more sequences should be used to observe the differences between the highly sensitive test with the proposed value and the test with the Yamamoto's value. We cannot expect to get any meaningful results because there are some approximation errors. For instance, we assume that the p-value takes any real value in $[0,1]$, but practically it can take only discrete values. When we use an enormous number of sequences, we cannot avoid the effect of such errors.
 %
 Thus, the purpose of the experiments is only to confirm that the proposed value does not cause any problem in practical situation.
 \par
 Tables \ref{tab:proportion_1} and \ref{tab:proportion_2} show the results of proportion test with $\xi=3$ and with $\xi=2$, respectively. Tables \ref{tab:uniformity_1}, \ref{tab:uniformity_2} and \ref{tab:uniformity_3} show the results of uniformity test with the significance levels $0.0001$, $0.01$ and $0.05$, respectively. Note that ``MT/AES'' means that a tested sequence is generated by Mersenne Twister and AES-128 CTR is used for flipping each bit. ``AES/MT'' and ``AES/AES'' are defined in the same manner.
-% \par
-% If the highly sensitive test with our proposed value accepts or rejects much more sets, it may indicate that our proposed value is problematic. However, there is no such cases according to Tables \ref{tab:proportion_1}, \ref{tab:proportion_2}, \ref{tab:uniformity_1}, \ref{tab:uniformity_2} and \ref{tab:uniformity_3}, which supports our proposed value is robust.
 The results in Tables \ref{tab:proportion_1}, \ref{tab:proportion_2}, \ref{tab:uniformity_1}, \ref{tab:uniformity_2} and \ref{tab:uniformity_3} support that the proposed value is robust.
 %-----------------------------------------------------------------------------------------------%
 \begin{table}[htb]
@@ -1374,33 +917,278 @@ The results in Tables \ref{tab:proportion_1}, \ref{tab:proportion_2}, \ref{tab:u
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
-%-----------------------------------------------------------------------------------------------%
 \clearpage
 \section{Conclusion}\label{sec:conclusion}
 \input{conclusion}
-%
 %-- Acknowledgments -------------------------------------------------------------
 \clearpage
 \acknowledgment
 \input{acknowledments}
-%
 %-- References ------------------------------------------------------------------
 \clearpage
 \addcontentsline{toc}{section}{\refname} % Add to the table of contents.
                                          % Delete if you use chapter option.
 \bibliographystyle{ieeetr}
 \bibliography{cite}
-%
 %-- Appendix ---------------------------------------------------------------------
 %%% If you don't need appendices, delete the below.
 \clearpage
 \appendix
 \input{appendixA.tex}
 \clearpage
-\input{appendixB.tex}
-% \input{appendix3.tex}
+% \input{appendixB.tex}
+\newpage
+\section{Exploration of the covariance given in Eq. (\ref{eq:covariance_g_g})}\label{appendix:B}
+In this appendix, we explore the covariance given in Eq. (\ref{eq:covariance_g_g}) to calculate the value more efficiently by computational experiments. Notice that the covariance is written as 
+\begin{align}\label{eq:cov_saikei}
+	\mathrm{Cov}[g(A_n),\, g(A_{n+k})] 
+	= \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} g(i) g(j) \mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right] - \{L\times H(\hat{q})\}^2,
+\end{align}
+where $g$ is given in Eq. (\ref{eq:function_g}), $\mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right]$ is given in Eq. (\ref{eq:joint_distribution}), and $H$ is a binary entropy function.
+%
+Since the term $\{L\times H(\hat{q})\}^2$ is irrelevant to an infinite series, we write the first term of the right hand side (r.h.s.) of Eq. (\ref{eq:cov_saikei}) as
+%
+\begin{align}\label{eq:Sk}
+	\overline{S}_{k} := \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} g(i) g(j) \mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right].
+\end{align}
+%
+Firstly, we show the following Lemma concerning an infinite series to calculate the value expressed Eq. (\ref{eq:Sk}). 
+%
+\begin{lemma}\label{lemma:1}
+% abcdefghijklmnopqrstuvwxyz
+For any $z \in (0,1)$, the following relation holds
+\begin{align}\label{eq:infinite_series}
+	\sum_{i=1}^{\infty} g(i) \times (1-z)^i = -\frac{1}{\ln 2} \times \frac{1-z}{z} \times \ln z,
+\end{align}
+where
+\begin{align}
+	g(m) = (\log_2 \mathrm{e}) \sum_{k=1}^{m-1} \frac{1}{k}.
+\end{align}
+\end{lemma}
+%-----------------------------------------------------------------------------------------------%
+\begin{proof}
+Let $t=1-z$, and $\overline{S}$ be the left hand side of Eq. (\ref{eq:infinite_series}), that is,
+\begin{align}\begin{split}\label{eq:S}
+  \overline{S} &= \sum_{i=1}^{\infty} g(i) \times t^i \\
+    % \Leftrightarrow S &= g(1)\times A +  \sum_{i=2}^{\infty} g(i) \times A^{i} \label{eq:S}.
+    &= g(1)\times t +  \sum_{i=2}^{\infty} g(i) \times t^{i}.
+\end{split}\end{align}
+Multiplying the both sides of Eq. (\ref{eq:S}) by $t(\neq 0)$, we obtain the following relation
+\begin{align}\begin{split}\label{eq:AS}
+  t\times \overline{S} &= \sum_{i=1}^{\infty} g(i) \times t^{i+1} \\
+  &= \sum_{i=2}^{\infty} g(i-1) \times t^{i}.
+\end{split}\end{align}
+Subtracting Eq. (\ref{eq:AS}) from Eq. (\ref{eq:S}), we obtain the following relation
+\begin{align}\begin{split}\label{eq:(1-A)S}
+  (1-t)\overline{S} &= g(1)\times t^{1} + \sum_{i=2}^{\infty} \left\{ g(i)-g(i-1) \right\} \times t^{i} \\
+  &=0 + \sum_{i=2}^{\infty} (\log_2 \mathrm{e}) \times \frac{1}{i-1} \times t^{i} \\
+  &=(\log_2 \mathrm{e})\times t \times \sum_{i=1}^{\infty} \frac{t^{i}}{i} \\
+  &=(\log_2 \mathrm{e})\times t \times \left\{ - \ln (1-t) \right\}.
+\end{split}\end{align}
+To obtain the last equality in the above equations, we have used the Taylor series for $|t| < 1$.
+Dividing both sides of Eq. (\ref{eq:(1-A)S}) by $1-t (\neq 0)$, we arrive at the following result
+\begin{align}
+  \overline{S} &= -\frac{1}{\ln 2} \times \frac{t}{1-t} \times \ln (1-t).
+\end{align}
+The lemma is obtained if we substitute $t$ into $1-z$.
+\end{proof}
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\par
+In the next place, we calculate the value given in Eq. (\ref{eq:Sk}) more in details.
+\subsection{Case of $1 \leq j \leq k-1$}
+For $1 \leq j \leq k-1$, Eq. (\ref{eq:Sk}) is written as
+\begin{align}\begin{split}
+  \overline{S}_{k} 
+  &:= \sum_{i=1}^{\infty} \sum_{j=1}^{k-1} g(i) g(j) \mathrm{Pr} \left[ A_n=i,\,A_{n+k}=j \right] \\
+  &= \sum_{i=1}^{\infty} \sum_{j=1}^{k-1} g(i) g(j) \left( \sum_{r=0}^{L} \binom{L}{r}w_r^2 (1-w_r)^{i-1} \right) \times \left( \sum_{r=0}^{L} \binom{L}{r}w_r^2 (1-w_r)^{j-1} \right) \\ 
+  &= \sum_{r=0}^{L} \left\{\binom{L}{r} \frac{w_r^2}{1-w_r} \sum_{i=1}^{\infty} g(i)(1-w_r)^{i} \right\}
+  \times \sum_{r=0}^{L} \left\{ \binom{L}{r} \frac{w_r^2}{1-w_r} \sum_{j=1}^{k-1} g(j)(1-w_r)^{j} \right\}.
+\end{split}\end{align}
+From Lemma \ref{lemma:1}, the infinite series of $i$ in the above equations is written as
+\begin{align}
+	\sum_{i=1}^{\infty} g(i) (1 - w_r)^{i} = - \frac{1}{\ln 2} \times \frac{1-w_r}{w_r}\times\ln w_r.
+\end{align}
+%
+Therefore, we obtain the following relation
+\begin{align}\begin{split}
+  \overline{S}_{k}
+  =& \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{w_r^2}{1-w_r}  \times \left(- \frac{1}{\ln 2} \times \frac{1-w_r}{w_r}\times\ln w_r \right) \right\} \\
+  &\times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{w_r^2}{1-w_r} \times \sum_{j=1}^{k-1} (1-w_r)^{j} \right\} \\
+  =&-\frac{1}{\ln 2}\sum_{r=0}^{L} \left\{ \dbinom{L}{r} w_r \ln w_r \right\} \times \sum_{r=0}^{L} \left\{ \dbinom{L}{r} \frac{w_r^2}{1-w_r} \sum_{j=1}^{k-1} (1-w_r)^{j} \right\}.
+\end{split}\end{align}
+%
+\subsection{Case of $j=k$}
+In the case of $j=k$, Eq. (\ref{eq:Sk}) is written as
+\begin{align}\begin{split}\label{eq:app_case2}
+  \overline{S}_{k} 
+  &= \sum_{i=1}^{\infty} g(i) \sum_{r=0}^{L} \binom{L}{r} w_r^3 (1-w_r)^{k+i-2} \sum_{j \in \{k\}} g(j)\\
+  &= \sum_{r=0}^{L} \binom{L}{r} w_r^3 (1-w_r)^{k-2} \sum_{i=1}^{\infty} g(i) (1-w_r)^{i} \times g(k) \\
+  &= g(k) \times \sum_{r=0}^{L} \binom{L}{r} w_r^3 (1-w_r)^{k-2} \left( -\frac{1}{\ln 2} \times \frac{1-w_{r}}{w_{r}} \times \ln w_{r} \right) \\
+  &= -\frac{g(k)}{\ln 2} \times \sum_{r=0}^{L} \binom{L}{r} w_r^2 (1-w_r)^{k-1} \ln w_{r}.
+\end{split}\end{align}
+The third equation in Eq. (\ref{eq:app_case2}) has been obtained from Lemma \ref{lemma:1}.
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\subsection{Case of $k+1 \leq j \leq k+i-1$}
+Recall that the joint distribution for $k+1 \leq j \leq k+i-1$ is written as
+\begin{align}\begin{split}
+	\mathrm{Pr}[A_n=i,\, A_{n+k}=j] 
+	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)] \\
+	&+ \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\}\mathrm{Pr}[e_3(b_1,b_2)],
+\end{split}\end{align}
+where $\mathrm{Pr}[e_3(b_1,b_2)]$ is expressed as
+\begin{align}\begin{split}
+	\mathrm{Pr}[e_3(b_1,b_2)]
+  =& w_{r_1}^2  \times w_{r_2}^2 
+  \times (1-w_{r_1})^{i-j+k-1} 
+  \times (1-w_{r_1}-w_{r_2})^{j-k-1}
+  \times (1-w_{r_2})^{k-1} \\
+  =&\phi_k(r_1,r_2)\times (1-w_{r_1})^{i} \times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j},
+\end{split}\end{align}
+%
+where
+\begin{align}\label{eq:phi_k}
+	\phi_k(r_1,r_2) = w_{r_1}^2 w_{r_2}^2 
+  	(1-w_{r_1})^{k-1} 
+  	(1-w_{r_1}-w_{r_2})^{-k-1}
+  	(1-w_{r_2})^{k-1}.
+\end{align}
+%
+Then, Eq. (\ref{eq:Sk}) is expressed as
+\begin{align}\begin{split}\label{eq:Sk_case3}
+	\overline{S}_k 
+	=& \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)]\\ 
+	&+ \sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1} \left\{\binom{L}{r_1}-1 \right\}\mathrm{Pr}[e_3(b_1,b_2)].
+\end{split}\end{align}
+%
+Now, we consider the first term in r.h.s. of Eq. (\ref{eq:Sk_case3}). Let $\overline{A}_1$ be this term of Eq. (\ref{eq:Sk_case3}). We have
+\begin{align}\begin{split}\label{eq:A_1}
+	\overline{A}_1
+	&=\sum_{i=1}^{\infty}\sum_{j=k+1}^{k+i-1} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_3(b_1,b_2)] \\
+	&=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	\sum_{i=1}^{\infty} \sum_{j=1}^{k+i-1} g(i)g(j)(1-w_{r_1})^{i} \times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \\
+	&=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	\sum_{j=k+1}^{\infty} \sum_{i=k+1}^{k+i-1} g(i)g(j)(1-w_{r_1})^{i} \times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \\
+	&=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)
+	\sum_{j=k+1}^{\infty} \left\{ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \sum_{i=j-k+1}^{\infty} g(i)(1-w_{r_1})^{i} \right\}.
+\end{split}\end{align}
+In the course of the derivation of the above relations, the second equation has been obtained from Eq. (\ref{eq:phi_k}). The third equation has been obtained by exchanging the summation over $i$ and $j$.
+%
+Then, the infinite series with respect to $i$ in the last equation of Eq. (\ref{eq:A_1}) can be calculated as
+\begin{align}\begin{split}
+	\sum_{i=j-k+1}^{\infty} g(i)(1-w_{r_1})^{i} 
+	&= \sum_{i=1}^{\infty} g(i)(1-w_{r_1})^{i} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \\
+	&= -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i}.
+\end{split}\end{align}
+In the above relations, we have used the result of Lemma \ref{lemma:1}.
+Hence, the first term in r.h.s. of Eq. (\ref{eq:Sk_case3}) can be expressed as
+\begin{align}
+	\overline{A}_1 
+	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)\\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right].
+\end{align}
+We can derive the second term in r.h.s. of Eq. (\ref{eq:Sk_case3}) in the same way as the first term. Let $\overline{A}_2$ be the second term of Eq. (\ref{eq:Sk_case3}). Then, we have
+\begin{align}\begin{split}
+	\overline{A}_2 =& \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \phi(r_1,r_2) \\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right].
+\end{split}\end{align}
+%
+Therefore, Eq. (\ref{eq:Sk_case3}) can be written as
+\begin{align}\begin{split}
+	\overline{S}_k =& \overline{A}_1 + \overline{A}_2 \\
+	=& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\phi_k(r_1,r_2)\\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right] \\
+	&+\sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \phi(r_1,r_2) \\
+	&\times\sum_{j=k+1}^{\infty} \left[ g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{j} \times \left\{ -\frac{1}{\ln 2} 
+	\times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{i=1}^{j-k} g(i)(1-w_{r_1})^{i} \right\} \right],
+\end{split}\end{align}
+where $\phi_k(r_1,r_2)$ is given in Eq. (\ref{eq:phi_k}).
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\subsection{Case of $j=k+i$}
+Equation (\ref{eq:Sk}) in the case of $j=k+i$ is equal to $0$ from Eq. (\ref{eq:joint_distribution}).
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------------------------%
+\subsection{Case of $j \geq k+i+1$}
+%--------------------------------------------------------------------------------%
+Recall that the joint distribution for $j \geq k+i+1$ is written as
+\begin{align}\begin{split}
+  \mathrm{Pr}[A_n=i,\, A_{n+k}=j] 
+  =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_5(b_1,b_2)] \\
+  &+ \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\}\mathrm{Pr}[e_5(b_1,b_2)],
+\end{split}\end{align}
+where $\mathrm{Pr}[e_5(b_1,b_2)]$ is expressed as
+\begin{align}\begin{split}
+  \mathrm{Pr}[e_5(b_1,b_2)]
+  =& w_{r_1}^2  \times w_{r_2}^2 
+  \times (1-w_{r_1})^{-i+j-k-1} 
+  \times (1-w_{r_1}-w_{r_2})^{i-1}
+  \times (1-w_{r_1})^{k-1} \\
+  =&\psi_k(r_1,r_2)\times \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times (1-w_{r_1})^j,
+\end{split}\end{align}
+%
+where
+\begin{align}\begin{split}
+  \psi_k(r_1,r_2) 
+  &= w_{r_1}^2 w_{r_2}^2 
+    (1-w_{r_1})^{-k-1} 
+    (1-w_{r_1}-w_{r_2})^{-1}
+    (1-w_{r_1})^{k-1} \\
+  &= w_{r_1}^2 w_{r_2}^2 (1-w_{r_1})^{-2} (1-w_{r_1}-w_{r_2})^{-1}.
+  \label{eq:psi_k}
+\end{split}\end{align}
+%
+Then, Eq. (\ref{eq:Sk}) is expressed as
+\begin{align}\begin{split}\label{eq:Sk_case5}
+  \overline{S}_k 
+  =& \sum_{i=1}^{\infty}\sum_{j=k+i+1}^{\infty} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_5(b_1,b_2)]\\ 
+  &+ \sum_{i=1}^{\infty}\sum_{j=k+i+1}^{\infty} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1} \left\{\binom{L}{r_1}-1 \right\}\mathrm{Pr}[e_5(b_1,b_2)].
+\end{split}\end{align}
+%
+Firstly, we consider the first term in the r.h.s. of Eq. (\ref{eq:Sk_case3}). Let $\overline{B}_1$ be the first term of Eq. (\ref{eq:Sk_case3}). Then, $\overline{B}_1$ is written as
+\begin{align}\begin{split}\label{eq:B_1}
+  \overline{B}_1
+  &=\sum_{i=1}^{\infty}\sum_{j=k+i+1}^{\infty} g(i)g(j) \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\mathrm{Pr}[e_5(b_1,b_2)] \\
+  &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)
+  \sum_{i=1}^{\infty} \sum_{j=k+i+1}^{\infty} g(i)g(j) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times (1-w_{r_1})^j \\
+  &=\sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)
+  \sum_{i=1}^{\infty} g(i)\left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \sum_{j=k+i+1}^{\infty} g(j) (1-w_{r_1})^j.
+\end{split}\end{align}
+In the course of the derivation of the above relations, the second equation has been obtained from Eq. (\ref{eq:phi_k}). The third equation has been obtained by exchange of infinite series.
+%
+Then, the infinite sum with respect to $j$ in the last equation of Eq. (\ref{eq:B_1}) can be calculated as
+\begin{align}\begin{split}
+  \sum_{j=k+i+1}^{\infty} g(j) (1-w_{r_1})^j 
+  &= \sum_{j=1}^{\infty} g(j)(1-w_{r_1})^{j} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \\
+  &= -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j}.
+\end{split}\end{align}
+In the above relations, we use the result of Lemma \ref{lemma:1}.
+Hence, the first term of Eq. (\ref{eq:Sk_case5}) can be expressed as
+\begin{align}
+  \overline{B}_1 
+  =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)\\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right].
+\end{align}
+We can derive the second term of Eq. (\ref{eq:Sk_case5}) in the same way as the first term. Let $\overline{B}_2$ be the second term of Eq. (\ref{eq:Sk_case5}). Then, we have
+\begin{align}\begin{split}
+  \overline{B}_2 =& \sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \psi(r_1,r_2) \\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right].
+\end{split}\end{align}
+%
+Therefore, Eq. (\ref{eq:Sk_case5}) can be expressed as
+\begin{align}\begin{split}
+  \overline{S}_k =& \overline{B}_1 + \overline{B}_2 \\
+  =& \sum_{r_1=0}^{L} \sum_{r_2 \neq r_1} \binom{L}{r_1}\binom{L}{r_2}\psi_k(r_1,r_2)\\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right] \\
+  &+\sum_{r_1=0}^{L} \sum_{r_2 \in \{r_1\}} \binom{L}{r_1}\left\{\binom{L}{r_1}-1\right\} \psi(r_1,r_2) \\
+  &\times\sum_{i=1}^{\infty} \left[ g(i) \left(1-\frac{w_{r_2}}{1-w_{r_1}} \right)^{i} \times \left\{ -\frac{1}{\ln 2} \times \frac{1-w_{r_1}}{w_{r_1}} \times \ln w_{r_1} - \sum_{j=1}^{k+i} g(j)(1-w_{r_1})^{j} \right\} \right],
+\end{split}\end{align}
+where $\psi_k(r_1,r_2)$ is given in Eq. (\ref{eq:psi_k}).
 %
 %-- End of body -------------------------------------------------------------------
 \fi
